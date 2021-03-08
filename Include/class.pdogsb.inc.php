@@ -66,10 +66,23 @@ class PdoGsb {
      * @return l'id, le nom et le prénom sous la forme d'un tableau associatif
      */
     public function getInfosVisiteur($login, $mdp) {
-        $req = "select visiteur.id as id, visiteur.nom as nom, visiteur.prenom as prenom from visiteur
-		where visiteur.login='$login' and visiteur.mdp='$mdp'";
+        $req = "select GetInfosVisiteur('$login', '$mdp')";
         $rs = PdoGsb::$monPdo->query($req);
-        $ligne = $rs->fetch();
+        $ligne = $rs->fetch(PDO::FETCH_ASSOC);
+        return $ligne;
+    }
+
+    /**
+     * Retourne les informations d'un comptable
+
+     * @param $login
+     * @param $mdp
+     * @return l'id, le nom et le prénom sous la forme d'un tableau associatif
+     */
+    public function getInfosComptable($login, $mdp) {
+        $req = "select GetInfosComptable('$login', '$mdp')";
+        $rs = PdoGsb::$monPdo->query($req);
+        $ligne = $rs->fetch(PDO::FETCH_ASSOC);
         return $ligne;
     }
 
