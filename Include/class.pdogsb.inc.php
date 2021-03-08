@@ -19,9 +19,9 @@ class PdoGsb {
 
     private static $serveur = 'sqlsrv:server=SVRSLAM01';
     //private static $bdd='dbname=gsbV2';
-    private static $bdd = 'Database=gsb_valide';
-    private static $user = 'root';
-    private static $mdp = '';
+    private static $bdd = 'Database=GSB_VALIDE_MACSIM';
+    private static $user = 'afc_macsim';
+    private static $mdp = 'afc_macsim';
     private static $monPdo;
     private static $monPdoGsb = null;
 
@@ -66,7 +66,7 @@ class PdoGsb {
      * @return l'id, le nom et le prénom sous la forme d'un tableau associatif
      */
     public function getInfosVisiteur($login, $mdp) {
-        $req = "select GetInfosVisiteur('$login', '$mdp')";
+        $req = "select * from GetInfosVisiteur('$login', '$mdp')";
         $rs = PdoGsb::$monPdo->query($req);
         $ligne = $rs->fetch(PDO::FETCH_ASSOC);
         return $ligne;
@@ -80,7 +80,7 @@ class PdoGsb {
      * @return l'id, le nom et le prénom sous la forme d'un tableau associatif
      */
     public function getInfosComptable($login, $mdp) {
-        $req = "select GetInfosComptable('$login', '$mdp')";
+        $req = "select * from GetInfosComptable('$login', '$mdp')";
         $rs = PdoGsb::$monPdo->query($req);
         $ligne = $rs->fetch(PDO::FETCH_ASSOC);
         return $ligne;
