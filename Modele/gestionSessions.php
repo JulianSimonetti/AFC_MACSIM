@@ -1,5 +1,5 @@
 <?php
 
-function getInfosUtilisateur() {
+function getInfosComptable() {
     return;
 }
