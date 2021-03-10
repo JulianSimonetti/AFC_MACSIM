@@ -85,6 +85,13 @@ class PdoGsb {
         $ligne = $rs->fetch(PDO::FETCH_ASSOC);
         return $ligne;
     }
+    
+    public function getInfosCategorieFrais($id) {
+        $req = "select CFF_LIBELLE, CFF_MONTANT from SP_CATEGORIE_FF_GET_INFOS('$id')";
+        $rs = PdoGsb::$monPdo->query($req);
+        $ligne = $rs->fetch(PDO::FETCH_ASSOC);
+        return $ligne;
+    }
 
     /**
      * Retourne sous forme d'un tableau associatif toutes les lignes de frais hors forfait
