@@ -57,14 +57,36 @@ class PdoGsb {
         }
         return self::$monPdoGsb;
     }
-    
+
     public function getInfosFiche($idVisiteur, $moisFiche) {
-        $req = "select VIS_ID, FICHE_MOIS, EFF_ID, FICHE_NB_JUSTIFICATIFS, FICHE_MONTANT_VALIDE, FICHE_DATE_DERNIERE_MODIF "
-                . "from FICHE_FRAIS "
+        $req = "select VIS_ID, FICHE_MOIS, FICHE_FRAIS.EFF_ID, EFF_LIBELLE, FICHE_NB_JUSTIFICATIFS, FICHE_MONTANT_VALIDE, FICHE_DATE_DERNIERE_MODIF "
+                . "from FICHE_FRAIS inner join ETAT_FICHE_FRAIS on FICHE_FRAIS.EFF_ID = ETAT_FICHE_FRAIS.EFF_ID "
                 . "where VIS_ID = '$idVisiteur' and FICHE_MOIS = '$moisFiche'";
         $rs = PdoGsb::$monPdo->query($req);
         $ligne = $rs->fetch(PDO::FETCH_ASSOC);
         return $ligne;
+    }
+
+    public function getLignesFF($idVisiteur, $moisFiche) {
+        $req = "select * "
+                . "from LIGNE_FRAIS_FORFAITISE "
+                . "where VIS_ID = '$idVisiteur' and FICHE_MOIS = '$moisFiche'";
+        $rs = PdoGsb::$monPdo->query($req);
+        $lesLignes = $rs->fetchAll(PDO::FETCH_ASSOC);
+        return $lesLignes;
+    }
+
+    public function getLignesFHF($idVisiteur, $moisFiche) {
+        $req = "select * "
+                . "from LIGNE_FRAIS_HORS_FORFAIT "
+                . "where VIS_ID = '$idVisiteur' and FICHE_MOIS = '$moisFiche'";
+        $rs = PdoGsb::$monPdo->query($req);
+        if ($rs->rowCount() > 0) {
+            $lesLignes = $rs->fetchAll(PDO::FETCH_ASSOC);
+        } else {
+            $lesLignes = [];
+        }
+        return $lesLignes;
     }
 
     /**
@@ -94,7 +116,7 @@ class PdoGsb {
         $ligne = $rs->fetch(PDO::FETCH_ASSOC);
         return $ligne;
     }
-    
+
     public function getInfosCategorieFrais($id) {
         $req = "select CFF_LIBELLE, CFF_MONTANT from SP_CATEGORIE_FF_GET_INFOS('$id')";
         $rs = PdoGsb::$monPdo->query($req);
@@ -360,9 +382,9 @@ class PdoGsb {
      * @return boolean Le résultat de la mise à jour.
      */
     public function setLesQuantitesFraisForfaitises($unIdVisiteur, $unMois, $lesFraisForfaitises) {
+        
     }
 
-    
     /**
      *
      * Met à jour les frais hors forfait dans la base de données.
@@ -381,7 +403,7 @@ class PdoGsb {
     public function setLesFraisHorsForfait($unIdVisiteur, $unMois, $lesFraisHorsForfait, $nbJustificatifsPEC) {
         
     }
-    
+
     /**
      * 
      * Retourne un recordset des visiteurs à utiliser
@@ -395,7 +417,7 @@ class PdoGsb {
         $res = PdoGsb::$monPdo->query($req);
         return $res;
     }
-    
+
     /**
      * 
      * Retourne un tableau associatif des infos
@@ -406,10 +428,11 @@ class PdoGsb {
      * @param type $mois Mois avec la codification 'aaaamm'
      * @return array Tableau associatif des infos de la fiche
      */
-    public function getInfosFormFiche($idVisiteur, $mois){
-        $req = 'EXEC GetInfosFicheFrais \''.$idVisiteur.'\',\''.$mois.'\'';
+    public function getInfosFormFiche($idVisiteur, $mois) {
+        $req = 'EXEC GetInfosFicheFrais \'' . $idVisiteur . '\',\'' . $mois . '\'';
         $res = PdoGsb::$monPdo->query($req);
         return $res->fetch(PDO::FETCH_ASSOC);
     }
+
 }
 ?>
