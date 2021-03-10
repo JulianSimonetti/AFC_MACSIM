@@ -44,15 +44,37 @@ final class FicheFrais {
     }
 
     public function initAvecInfosBDD() {
-
+        $this->initInfosFicheSansLesFrais();
+        $this->initLesFraisForfaitises();
+        $this->initLesFraisHorsForfait();
     }
 
     public function initAvecInfosBDDSansFF() {
-
+        $this->initInfosFicheSansLesFrais();
+        $this->initLesFraisHorsForfait();
     }
     
     public function initInfosFicheSansLesFrais() {
-        
+        $resFiche = self::$pdo->getInfosFiche($this->idVisiteur, $this->moisFiche);
+        if ($resFiche) {
+            $this->nbJustificatifs = $resFiche['FICHE_NB_JUSTIFICATIFS'];
+            $this->montantValide = $resFiche['FICHE_MONTANT_VALIDE'];
+            $this->dateDerniereModif = $resFiche['FICHE_DATE_DERNIERE_MODIF'];
+            $this->idEtat = $resFiche['FICHE_NB_JUSTIFICATIFS'];
+            $this->libelleEtat = $resFiche['EFF_LIBELLE'];
+        } else {
+            $this->idEtat = '00';
+        }
+    }
+    
+    public function initLesFraisForfaitises() {
+        $lesFiches = self::$pdo->getLignesFF($this->idVisiteur, $this->moisFiche);
+        $this->lesFraisForfaitises = $lesFiches;
+    }
+    
+    public function initLesFraisHorsForfait() {
+        $lesFiches = self::$pdo->getLignesFHF($this->idVisiteur, $this->moisFiche);
+        $this->lesFraisHorsForfait = $lesFiches;
     }
 
     /**
