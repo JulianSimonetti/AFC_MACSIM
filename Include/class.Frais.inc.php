@@ -75,3 +75,29 @@ final class FraisForfaitise extends Frais {
 
 }
 
+final class FraisHorsForfait extends Frais {
+    
+    protected $libelle;
+    protected $date;
+    protected $montant;
+    
+    public function __construct($unIdVisiteur, $unMoisFicheFrais, $unNumFrais, $unLibelle, $uneDate, $unMontant) {
+        parent::__construct($unIdVisiteur, $unMoisFicheFrais, $unNumFrais);
+        $this->libelle = $unLibelle;
+        $this->date = $uneDate;
+        $this->montant = $unMontant;
+    }
+    
+    public function getLibelle() {
+        return $this->libelle;
+    }
+    
+    public function getDate() {
+        return $this->date;
+    }
+    
+    public function getMontant() {
+        return $this->montant;
+    }
+}
+
