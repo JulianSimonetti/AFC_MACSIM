@@ -81,7 +81,7 @@ class PdoGsb {
                 . "from LIGNE_FRAIS_HORS_FORFAIT "
                 . "where VIS_ID = '$idVisiteur' and FICHE_MOIS = '$moisFiche'";
         $rs = PdoGsb::$monPdo->query($req);
-        if ($rs->rowCount() > 0) {
+        if ($rs->fetchColumn() > 0) {
             $lesLignes = $rs->fetchAll(PDO::FETCH_ASSOC);
         } else {
             $lesLignes = [];

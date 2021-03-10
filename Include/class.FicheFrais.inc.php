@@ -44,11 +44,14 @@ final class FicheFrais {
     }
 
     public function initAvecInfosBDD() {
-
+        $this->initInfosFicheSansLesFrais();
+        $this->initLesFraisForfaitises();
+        $this->initLesFraisHorsForfait();
     }
 
     public function initAvecInfosBDDSansFF() {
-
+        $this->initInfosFicheSansLesFrais();
+        $this->initLesFraisHorsForfait();
     }
     
     public function initInfosFicheSansLesFrais() {
@@ -64,9 +67,14 @@ final class FicheFrais {
         }
     }
     
-    public function initFraisForfaitises() {
+    public function initLesFraisForfaitises() {
         $lesFiches = self::$pdo->getLignesFF($this->idVisiteur, $this->moisFiche);
         $this->lesFraisForfaitises = $lesFiches;
+    }
+    
+    public function initLesFraisHorsForfait() {
+        $lesFiches = self::$pdo->getLignesFHF($this->idVisiteur, $this->moisFiche);
+        $this->lesFraisHorsForfait = $lesFiches;
     }
 
     /**
