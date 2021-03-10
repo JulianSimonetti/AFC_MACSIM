@@ -18,7 +18,7 @@
 class PdoGsb {
 
     private static $serveur = 'sqlsrv:server=SVRSLAM01';
-    //private static $bdd='dbname=gsbV2';
+//private static $bdd='dbname=gsbV2';
     private static $bdd = 'Database=GSB_VALIDE_MACSIM';
     private static $user = 'afc_macsim';
     private static $mdp = 'afc_macsim';
@@ -413,7 +413,7 @@ class PdoGsb {
      * @return object Recordset des visiteurs
      */
     public function getListeVisiteurs() {
-        $req = 'EXEC GetInfosVisiteurs';
+        $req = 'EXEC InfosVisiteurs';
         $res = PdoGsb::$monPdo->query($req);
         return $res;
     }

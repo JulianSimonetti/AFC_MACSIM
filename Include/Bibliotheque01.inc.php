@@ -38,7 +38,7 @@ function formSelectDepuisRecordset($ld_label, $ld_nom, $ld_id, $recordset, $vale
 }
 
 function formInputText($label, $name, $id, $value, $size, $maxlength, $tabindex, $required = false, $readonly = false) {
-    $code = '<label class="titre" for="'.$id.'">' . $label . ' :</label><input type="text" name="' . $name . '" id="' . $id . '" size="' . $size . '" maxlength="' . $maxlength . '" tabindex="' . $tabindex . '"';
+    $code = '<label class="titre" for="' . $id . '">' . $label . ' :</label><input type="text" name="' . $name . '" id="' . $id . '" size="' . $size . '" maxlength="' . $maxlength . '" tabindex="' . $tabindex . '"';
     if ($readonly) {
         $code .= ' readonly="readonly"';
     }
@@ -51,7 +51,7 @@ function formInputText($label, $name, $id, $value, $size, $maxlength, $tabindex,
 }
 
 function formInputPassword($label, $name, $id, $value, $size, $maxlength, $tabindex, $required = false) {
-    $code = '<label class="titre" for="'.$id.'">' . $label . ' :</label><input type="password" name="' . $name . '" id="' . $id . '" size="' . $size . '" maxlength="' . $maxlength . '" tabindex="' . $tabindex . '"';
+    $code = '<label class="titre" for="' . $id . '">' . $label . ' :</label><input type="password" name="' . $name . '" id="' . $id . '" size="' . $size . '" maxlength="' . $maxlength . '" tabindex="' . $tabindex . '"';
     if ($required) {
         $code .= ' required="required"';
     }
@@ -69,10 +69,10 @@ function formBoutonSubmit($name, $id, $value, $tabindex) {
 }
 
 function formTextArea($label, $name, $id, $value, $cols, $rows, $maxlength, $tabindex, $readonly = false) {
-    return '<label for="'.$id.'">'. $label . ' :</label><br />'."\n"
-        . '<textarea id="'.$id.'" name="'.$name.'" cols="'.$cols.'" rows="'.$rows.'" '
-        . 'maxlength="'.$maxlength.'" tabindex="'.$tabindex.'" '.($readonly ? 'readonly="readonly"' : '').'>'
-        . $value . '</textarea>';
+    return '<label for="' . $id . '">' . $label . ' :</label><br />' . "\n"
+            . '<textarea id="' . $id . '" name="' . $name . '" cols="' . $cols . '" rows="' . $rows . '" '
+            . 'maxlength="' . $maxlength . '" tabindex="' . $tabindex . '" ' . ($readonly ? 'readonly="readonly"' : '') . '>'
+            . $value . '</textarea>';
 }
 
 function getInfosPraticien($pratnum) {
@@ -89,20 +89,22 @@ function getInfosPraticien($pratnum) {
             . formInputText("TYPE", "PRA_TYPE", "PRA_TYPE", $infos['TYP_LIBELLE'], 50, 50, 70, false, true) . "<br />\n";
 }
 
-function formSelectDepuisRecordset($ld_label, $ld_nom, $ld_id, $recordset, $valeuropt, $tabindex) {
-    $code = '<label for="' . $ld_id . '">' . $ld_label . '</label>' . "\n"
-            . '    <select name="' . $ld_nom . '" id="' . $ld_id . '" class="titre" tabindex="' . $tabindex . '">' . "\n";
-
+function ListeVisiteursDepuisRecordset($recordset, $valeuropt = NULL) {
+    $code = '<label>Visiteur : <select name="lstVisiteur" id="lstVisiteur" tabindex="10"> <option';
     $recordset->setFetchMode(PDO::FETCH_NUM);
     $ligne = $recordset->fetch();
-    while ($ligne != false) {
-        $code .= '        <option ';
-        if ($ligne[0] == $valeuropt) {
-            $code .= 'selected="selected" ';
+    if (is_null($valeuropt)) {
+        while ($ligne != false) {
+
+            $code .= 'value="' . $ligne[0] . '">' . $ligne[1] . '</option>';
+            $ligne = $recordset->fetch();
         }
-        $code .= 'value="' . $ligne[0] . '">' . $ligne[1] . '</option>' . "\n";
-        $ligne = $recordset->fetch();
+    } else {
+        while ($ligne != false) {
+            $code .= 'value="a131">Villechalane</option>';
+        }
     }
-    $code .= '</select>';
+
+    $code .= '</label>';
     return $code;
 }
