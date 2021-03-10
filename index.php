@@ -17,11 +17,11 @@ $uc = $_REQUEST['uc'];
 
 switch ($uc) {
     case 'connexion': {
-            include("controleurs/c_connexion.php");
+            include("Controleurs/c_connexion.php");
             break;
         }
     case 'validerFicheFrais': {
-            include("controleurs/c_valideFrais.php");
+            include("Controleurs/c_valideFrais.php");
             break;
         }
 }

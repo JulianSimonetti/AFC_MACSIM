@@ -6,7 +6,11 @@ if (!isset($_REQUEST['action'])) {
 $action = $_REQUEST['action'];
 
 switch ($action) {
-    case 'validerFicheFrais': {
-            include("vues/formValidFrais.htm");
-        }    
+    case 'choixInitialVisiteur': {
+            include("Vues/formValidFrais.htm");
+            break;
+        }
+    case 'afficherFicheFraisSelectionnee': {
+            break;
+        }
 }
