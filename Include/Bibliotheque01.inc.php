@@ -88,3 +88,21 @@ function getInfosPraticien($pratnum) {
             . formInputText("COEFF NOTORIÉTÉ", "PRA_COEF", "PRA_COEF", $infos['PRA_COEF'], 50, 50, 60, false, true) . "<br />\n"
             . formInputText("TYPE", "PRA_TYPE", "PRA_TYPE", $infos['TYP_LIBELLE'], 50, 50, 70, false, true) . "<br />\n";
 }
+
+function formSelectDepuisRecordset($ld_label, $ld_nom, $ld_id, $recordset, $valeuropt, $tabindex) {
+    $code = '<label for="' . $ld_id . '">' . $ld_label . '</label>' . "\n"
+            . '    <select name="' . $ld_nom . '" id="' . $ld_id . '" class="titre" tabindex="' . $tabindex . '">' . "\n";
+
+    $recordset->setFetchMode(PDO::FETCH_NUM);
+    $ligne = $recordset->fetch();
+    while ($ligne != false) {
+        $code .= '        <option ';
+        if ($ligne[0] == $valeuropt) {
+            $code .= 'selected="selected" ';
+        }
+        $code .= 'value="' . $ligne[0] . '">' . $ligne[1] . '</option>' . "\n";
+        $ligne = $recordset->fetch();
+    }
+    $code .= '</select>';
+    return $code;
+}
