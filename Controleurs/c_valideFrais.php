@@ -1,5 +1,12 @@
 <?php
+
+if (!isset($_REQUEST['action'])) {
+    $_REQUEST['action'] = 'choixInitialVisiteur';
+}
 $action = $_REQUEST['action'];
-if ($action == "choixInitialVisiteur"){
-    
+
+switch ($action) {
+    case 'validerFicheFrais': {
+            include("vues/formValidFrais.htm");
+        }    
 }
