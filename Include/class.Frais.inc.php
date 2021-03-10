@@ -55,9 +55,22 @@ abstract class Frais {
 }
 
 final class FraisForfaitise extends Frais {
+    
+    protected $laCategorieFraisForfaitises;
+    protected $quantite;
 
-    public function __construct() {
-
+    public function __construct($unIdVisiteur, $unMoisFicheFrais, $unNumFrais, $quantite, $uneCategorie) {
+        parent::__construct($unIdVisiteur, $unMoisFicheFrais, $unNumFrais);
+        $this->laCategorieFraisForfaitises = $uneCategorie;
+        $this->quantite = $quantite;
+    }
+    
+    public function getQuantite() {
+        return $this->quantite;
+    }
+    
+    public function getCategorie() {
+        return $this->laCategorieFraisForfaitises;
     }
 
 }
