@@ -27,10 +27,6 @@ switch ($action) {
             }
             break;
         }
-    case 'validerFicheFrais': {
-            include("vues/c_valideFrais.php");
-            break;
-        }
 
     case 'deconnexion': {
             // Code ajouté par moi. Sans cela les informations de sessions
