@@ -5,6 +5,7 @@ require_once './Include/fct.inc.php';
 require_once './Include/class.Frais.inc.php';
 
 final class FicheFrais {
+    private static $pdo;
 
     private $idVisiteur;
     private $moisFiche;
@@ -36,8 +37,10 @@ final class FicheFrais {
         'NUI' => 3,
         'REP' => 4];
 
-    function __construct() {
-
+    function __construct($unIdVisiteur, $unMoisFiche) {
+        self::$pdo = PdoGsb::getPdoGsb();
+        $this->idVisiteur = $unIdVisiteur;
+        $this->moisFiche = $unMoisFiche;
     }
 
     public function initAvecInfosBDD() {
@@ -46,6 +49,10 @@ final class FicheFrais {
 
     public function initAvecInfosBDDSansFF() {
 
+    }
+    
+    public function initInfosFicheSansLesFrais() {
+        
     }
 
     /**

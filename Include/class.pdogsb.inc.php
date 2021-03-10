@@ -57,6 +57,15 @@ class PdoGsb {
         }
         return self::$monPdoGsb;
     }
+    
+    public function getInfosFiche($idVisiteur, $moisFiche) {
+        $req = "select VIS_ID, FICHE_MOIS, EFF_ID, FICHE_NB_JUSTIFICATIFS, FICHE_MONTANT_VALIDE, FICHE_DATE_DERNIERE_MODIF "
+                . "from FICHE_FRAIS "
+                . "where VIS_ID = '$idVisiteur' and FICHE_MOIS = '$moisFiche'";
+        $rs = PdoGsb::$monPdo->query($req);
+        $ligne = $rs->fetch(PDO::FETCH_ASSOC);
+        return $ligne;
+    }
 
     /**
      * Retourne les informations d'un visiteur
