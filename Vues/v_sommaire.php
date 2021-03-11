@@ -3,7 +3,7 @@
     <div id="infosUtil">
         <h2>
             Agent comptable :<br />
-            <?php echo $prenom . " " . $nom . "\n"; ?>
+            <?php echo $_SESSION["prenom"] . " " . $_SESSION["nom"] . "\n"; ?>
         </h2>
     </div>
     <ul id="menuList">
