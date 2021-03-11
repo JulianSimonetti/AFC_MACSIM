@@ -435,7 +435,7 @@ class PdoGsb {
     }
 
     function ListeVisiteursDepuisRecordset($valeuropt = NULL) {
-        $code = "<label>Visiteur : <select name=\"lstVisiteur\" id=\"lstVisiteur\" tabindex=\"10\">\n";
+        $code = "<label for=\"lstVisiteur\">Visiteur : </label><select name=\"lstVisiteur\" id=\"lstVisiteur\" tabindex=\"10\">\n";
         $recordset = $this->getListeVisiteurs();
         $recordset->setFetchMode(PDO::FETCH_NUM);
         $ligne = $recordset->fetch();
@@ -456,7 +456,7 @@ class PdoGsb {
             }
         }
 
-        $code .= '</label>';
+        $code .= '</select>';
         return $code;
     }
 
