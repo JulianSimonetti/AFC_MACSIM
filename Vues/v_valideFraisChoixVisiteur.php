@@ -5,7 +5,7 @@
             <form name="frmChoixVisiteurMoisFiche" id="frmChoixVisiteurMoisFiche" method="post" action="choisirVisiteurMoisFiche">
                 <?php echo ListeVisiteursDepuisRecordset(getListeVisiteurs()) ?>
                 <label for="txtMoisFiche">Mois : </label>
-                <input type="text" name="txtMoisFiche" id="txtMoisFiche" readonly="readonly" />
+                <?php echo affichageMois() ?>
                 <input type="submit" id="btnOk" name="btnOk" value="Ok" tabindex ="20" />
             </form>
         </div>
