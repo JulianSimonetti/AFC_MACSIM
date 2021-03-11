@@ -89,22 +89,3 @@ function getInfosPraticien($pratnum) {
             . formInputText("TYPE", "PRA_TYPE", "PRA_TYPE", $infos['TYP_LIBELLE'], 50, 50, 70, false, true) . "<br />\n";
 }
 
-function ListeVisiteursDepuisRecordset($recordset, $valeuropt = NULL) {
-    $code = '<label>Visiteur : <select name="lstVisiteur" id="lstVisiteur" tabindex="10"> <option';
-    $recordset->setFetchMode(PDO::FETCH_NUM);
-    $ligne = $recordset->fetch();
-    if (is_null($valeuropt)) {
-        while ($ligne != false) {
-
-            $code .= 'value="' . $ligne[0] . '">' . $ligne[1] . '</option>';
-            $ligne = $recordset->fetch();
-        }
-    } else {
-        while ($ligne != false) {
-            $code .= 'value="a131">Villechalane</option>';
-        }
-    }
-
-    $code .= '</label>';
-    return $code;
-}

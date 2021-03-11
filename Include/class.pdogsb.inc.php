@@ -434,5 +434,25 @@ class PdoGsb {
         return $res->fetch(PDO::FETCH_ASSOC);
     }
 
+    function ListeVisiteursDepuisRecordset($recordset, $valeuropt = NULL) {
+        $code = '<label>Visiteur : <select name="lstVisiteur" id="lstVisiteur" tabindex="10"> <option';
+        $recordset->setFetchMode(PDO::FETCH_NUM);
+        $ligne = $recordset->fetch();
+        if (is_null($valeuropt)) {
+            while ($ligne != false) {
+
+                $code .= 'value="' . $ligne[0] . '">' . $ligne[1] . '</option>';
+                $ligne = $recordset->fetch();
+            }
+        } else {
+            while ($ligne != false) {
+                $code .= 'value="'.$valeuropt.'">Villechalane</option>';
+            }
+        }
+
+        $code .= '</label>';
+        return $code;
+    }
+
 }
 ?>
