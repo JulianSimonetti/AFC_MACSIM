@@ -84,14 +84,6 @@ final class FicheFrais {
     public function getNbJustificatifs() {
         return $this->nbJustificatifs;
     }
-    
-    public function getLesQuantitesDeFraisForfaitises() {
-        $quantites = [];
-        foreach($this->lesFraisForfaitises as &$unFrais) {
-            array_push($quantites, $unFrais['LFF_QTE']);
-        }
-        return $quantites;
-    }
 
     /**
      *
@@ -143,7 +135,11 @@ final class FicheFrais {
      * @return array Le tableau demandé.
      */
     public function getLesQuantitesDeFraisForfaitises() {
-
+        $quantites = [];
+        foreach($this->lesFraisForfaitises as &$unFrais) {
+            array_push($quantites, $unFrais['LFF_QTE']);
+        }
+        return $quantites;
     }
 
     /**
