@@ -11,10 +11,10 @@
             <th></th>
         </tr>
         <tr>
-            <td><input type="text" size="3" name="txtEtape" id="txtEtape" tabindex="30" /></td>
-            <td><input type="text" size="3" name="txtKm" id="txtKm" tabindex="35" /></td>
-            <td><input type="text" size="3" name="txtNuitee" id="txtNuitee" tabindex="40" /></td>
-            <td><input type="text" size="3" name="txtRepas" id="txtRepas" tabindex="45" /></td>
+            <td><input type="text" size="3" name="txtEtape" id="txtEtape" tabindex="30" value="<?=$etp | 0?>"/></td>
+            <td><input type="text" size="3" name="txtKm" id="txtKm" tabindex="35" value="<?=$km | 0?>"/></td>
+            <td><input type="text" size="3" name="txtNuitee" id="txtNuitee" tabindex="40" value="<?=$nui | 0?>" /></td>
+            <td><input type="text" size="3" name="txtRepas" id="txtRepas" tabindex="45" value="<?=$rep | 0?>"/></td>
             <td>
                 <input type="submit" id="btnEnregistrerFF" name="btnEnregistrerFF" value="Enregistrer" tabindex="60" />&nbsp;
                 <input type="reset" id="btnReinitialiserFF" name="btnReinitialiserFF" value="Réinitialiser" tabindex="70" />
