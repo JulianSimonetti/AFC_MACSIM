@@ -68,13 +68,17 @@ final class FicheFrais {
     }
     
     public function initLesFraisForfaitises() {
-        $lesFiches = self::$pdo->getLignesFF($this->idVisiteur, $this->moisFiche);
-        $this->lesFraisForfaitises = $lesFiches;
+        $lesLignes = self::$pdo->getLignesFF($this->idVisiteur, $this->moisFiche);
+        foreach ($lesLignes as &$uneLigne) {
+            $this->lesFraisForfaitises[self::$tabNumLigneFraisForfaitise[trim($uneLigne['CFF_ID'])]] = 
+                    new FraisForfaitise($this->idVisiteur, $this->moisFiche, self::$tabNumLigneFraisForfaitise[trim($uneLigne['CFF_ID'])],
+                            $uneLigne['LFF_QTE'], $uneLigne['CFF_ID']);
+        }
     }
     
     public function initLesFraisHorsForfait() {
-        $lesFiches = self::$pdo->getLignesFHF($this->idVisiteur, $this->moisFiche);
-        $this->lesFraisHorsForfait = $lesFiches;
+        $lesLignes = self::$pdo->getLignesFHF($this->idVisiteur, $this->moisFiche);
+        $this->lesFraisHorsForfait = $lesLignes;
     }
     
     public function getLibelleEtat() {

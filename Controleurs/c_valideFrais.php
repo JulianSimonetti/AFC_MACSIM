@@ -24,27 +24,11 @@ switch ($action) {
             $FF->initAvecInfosBDD();
             $lignes = $FF->getLesFraisForfaitises();
             
-            $etp = null;
-            $nui = null;
-            $rep = null;
-            $km = null;
+            $etp = $lignes[1]->getQuantite();
+            $km = $lignes[2]->getQuantite();
+            $nui = $lignes[3]->getQuantite();
+            $rep = $lignes[4]->getQuantite();
             
-            foreach ($lignes as &$uneLigne) {
-                switch ($uneLigne['CFF_ID']) {
-                    case 'ETP':
-                        $etp = $uneLigne['LFF_QTE'];
-                        break;
-                    case 'NUI':
-                        $nui = $uneLigne['LFF_QTE'];
-                        break;
-                    case 'REP':
-                        $rep = $uneLigne['LFF_QTE'];
-                        break;
-                    case 'KM':
-                        $km = $uneLigne['LFF_QTE'];
-                        break;
-                }
-            }
             $etat = $FF->getLibelleEtat();
             $nbJustificatifs = $FF->getNbJustificatifs();
             $lesQuantites = $FF->getLesQuantitesDeFraisForfaitises();

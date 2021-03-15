@@ -69,7 +69,8 @@ class PdoGsb {
 
     public function getLignesFF($idVisiteur, $moisFiche) {
         $req = "select * "
-                . "from LIGNE_FRAIS_FORFAITISE "
+                . "from LIGNE_FRAIS_FORFAITISE L inner join CATEGORIE_FRAIS_FORFAITISE C "
+                . "on L.CFF_ID = C.CFF_ID "
                 . "where VIS_ID = '$idVisiteur' and FICHE_MOIS = '$moisFiche'";
         $rs = PdoGsb::$monPdo->query($req);
         $lesLignes = $rs->fetchAll(PDO::FETCH_ASSOC);
