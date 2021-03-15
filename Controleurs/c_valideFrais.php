@@ -14,6 +14,8 @@ switch ($action) {
             break;
         }
     case 'afficherFicheFraisSelectionnee': {
+            $_SESSION['ff_idVisiteur'] = $_REQUEST['lstVisiteur'];
+            $_SESSION['ff_mois'] = $_REQUEST['txtMoisFiche'];
             break;
         }
 }
