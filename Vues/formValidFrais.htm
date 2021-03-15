@@ -5,45 +5,6 @@
     </head>
     <body>
         <div id="contenu">
-            <h2>Validation d'une fiche de frais visiteur</h2>
-            <br />
-            <form name="frmChoixVisiteurMoisFiche" id="frmChoixVisiteurMoisFiche" method="post" action="choisirVisiteurMoisFiche">
-                <label>Visiteur :
-                    <select name="lstVisiteur" id="lstVisiteur" tabindex="10">
-                        <option value="a131">Villechalane</option>
-                    </select>
-                </label>
-                <label for="txtMoisFiche">Mois : </label>
-                <input type="text" name="txtMoisFiche" id="txtMoisFiche" readonly="readonly" />
-                <input type="submit" id="btnOk" name="btnOk" value="Ok" tabindex ="20" />
-            </form>
-            <br />
-            <br />
-            <div class="encadre">
-                <br />
-                <p>
-                    Etat de la fiche de frais :<input type="text" id="txtEtatFicheFrais" name="txtEtatFicheFrais" readonly="readonly" />
-                </p>
-                <br />
-                <h2>Frais au forfait</h2>
-                <form name="frmFraisForfait" id="frmFraisForfait" method="post" action="enregModifFF.php"
-                      onsubmit="return confirm('Voulez-vous réellement enregistrer les modifications apportées aux frais forfaitisés ?');">
-                    <table>
-                        <tr>
-                            <th>Forfait<br />étape</th><th>Frais<br />kilométriques</th><th>Nuitée<br />hôtel</th><th>Repas<br />restaurant</th><th></th>
-                        </tr>
-                        <tr>
-                            <td><input type="text" size="3" name="txtEtape" id="txtEtape" tabindex="30" /></td>
-                            <td><input type="text" size="3" name="txtKm" id="txtKm" tabindex="35" /></td>
-                            <td><input type="text" size="3" name="txtNuitee" id="txtNuitee" tabindex="40" /></td>
-                            <td><input type="text" size="3" name="txtRepas" id="txtRepas" tabindex="45" /></td>
-                            <td>
-                                <input type="submit" id="btnEnregistrerFF" name="btnEnregistrerFF" value="Enregistrer" tabindex="50" />&nbsp;
-                                <input type="reset" id="btnReinitialiserFF" name="btnReinitialiserFF" value="Réinitialiser" tabindex="60" />
-                            </td>
-                        </tr>
-                    </table>
-                </form>
                 <br />
                 <br />
                 <h2>Frais hors forfait</h2>
@@ -81,14 +42,5 @@
                     </p>
                 </form>
             </div>
-            <br />
-            <br />
-            <div class="piedForm">
-                <form name="frmValiderFicheFrais" id="frmValiderFicheFrais" method="post" action="validerFicheFrais.php"
-                      onsubmit="return confirm('Voulez-vous réellement valider la fiche de frais ?');">
-                    <input type="submit" name="btnValiderFiche" id="btnValiderFiche" value="Valider la fiche de frais" tabindex="160" />
-                </form>
-            </div>
-        </div>
     </body>
 </html>

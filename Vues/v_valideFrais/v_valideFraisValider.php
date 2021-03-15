@@ -1,17 +1,10 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-    </head>
-    <body>
-        <?php
-        // put your code here
-        ?>
-    </body>
-</html>
+
+<br />
+<br />
+<div class="piedForm">
+    <form name="frmValiderFicheFrais" id="frmValiderFicheFrais" method="post" action="validerFicheFrais.php"
+          onsubmit="return confirm('Voulez-vous réellement valider la fiche de frais ?');">
+        <input type="submit" name="btnValiderFiche" id="btnValiderFiche" value="Valider la fiche de frais" tabindex="160" />
+    </form>
+</div>
+</div>
