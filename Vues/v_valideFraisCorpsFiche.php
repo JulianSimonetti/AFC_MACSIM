@@ -11,7 +11,9 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        // put your code here
+        include("Vues/v_valideFrais/v_valideFraisEtatsFicheFrais");
+        include("Vues/v_valideFrais/v_valideFraisForfait");
+        include("Vues/v_valideFrais/v_valideFraisValider");
         ?>
     </body>
 </html>
