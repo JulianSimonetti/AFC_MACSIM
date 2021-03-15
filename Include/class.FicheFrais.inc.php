@@ -76,6 +76,14 @@ final class FicheFrais {
         $lesFiches = self::$pdo->getLignesFHF($this->idVisiteur, $this->moisFiche);
         $this->lesFraisHorsForfait = $lesFiches;
     }
+    
+    public function getLibelleEtat() {
+        return $this->libelleEtat;
+    }
+    
+    public function getNbJustificatifs() {
+        return $this->nbJustificatifs;
+    }
 
     /**
      *
