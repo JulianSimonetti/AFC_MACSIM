@@ -60,9 +60,12 @@ final class FicheFrais {
             $this->nbJustificatifs = $resFiche['FICHE_NB_JUSTIFICATIFS'];
             $this->montantValide = $resFiche['FICHE_MONTANT_VALIDE'];
             $this->dateDerniereModif = $resFiche['FICHE_DATE_DERNIERE_MODIF'];
-            $this->idEtat = $resFiche['FICHE_NB_JUSTIFICATIFS'];
+            $this->idEtat = $resFiche['EFF_ID'];
             $this->libelleEtat = $resFiche['EFF_LIBELLE'];
         } else {
+            $this->nbJustificatifs = 0;
+            $this->montantValide = 0;
+            $this->dateDerniereModif = (new DateTime())->format('Y-m-d');
             $this->idEtat = '00';
         }
     }
