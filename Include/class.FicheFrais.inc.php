@@ -5,8 +5,8 @@ require_once './Include/fct.inc.php';
 require_once './Include/class.Frais.inc.php';
 
 final class FicheFrais {
-    private static $pdo;
 
+    private static $pdo;
     private $idVisiteur;
     private $moisFiche;
     private $nbJustificatifs = 0;
@@ -53,7 +53,7 @@ final class FicheFrais {
         $this->initInfosFicheSansLesFrais();
         $this->initLesFraisHorsForfait();
     }
-    
+
     public function initInfosFicheSansLesFrais() {
         $resFiche = self::$pdo->getInfosFiche($this->idVisiteur, $this->moisFiche);
         if ($resFiche) {
@@ -66,25 +66,23 @@ final class FicheFrais {
             $this->idEtat = '00';
         }
     }
-    
+
     public function initLesFraisForfaitises() {
         $lesLignes = self::$pdo->getLignesFF($this->idVisiteur, $this->moisFiche);
         foreach ($lesLignes as &$uneLigne) {
-            $this->lesFraisForfaitises[self::$tabNumLigneFraisForfaitise[trim($uneLigne['CFF_ID'])]] = 
-                    new FraisForfaitise($this->idVisiteur, $this->moisFiche, self::$tabNumLigneFraisForfaitise[trim($uneLigne['CFF_ID'])],
-                            $uneLigne['LFF_QTE'], $uneLigne['CFF_ID']);
+            $this->lesFraisForfaitises[self::$tabNumLigneFraisForfaitise[trim($uneLigne['CFF_ID'])]] = new FraisForfaitise($this->idVisiteur, $this->moisFiche, self::$tabNumLigneFraisForfaitise[trim($uneLigne['CFF_ID'])], $uneLigne['LFF_QTE'], $uneLigne['CFF_ID']);
         }
     }
-    
+
     public function initLesFraisHorsForfait() {
         $lesLignes = self::$pdo->getLignesFHF($this->idVisiteur, $this->moisFiche);
         $this->lesFraisHorsForfait = $lesLignes;
     }
-    
+
     public function getLibelleEtat() {
         return $this->libelleEtat;
     }
-    
+
     public function getNbJustificatifs() {
         return $this->nbJustificatifs;
     }
@@ -100,7 +98,9 @@ final class FicheFrais {
      * @param int $quantite Le nombre d'unité(s).
      */
     public function ajouterUnFraisForfaitise($idCategorie, $quantite) {
-
+        $NouveauFrais = new FraisForfaitise($_SESSION['ff_idVisiteur'], $_SESSION['ff_mois'], $this->getNumLigneFraisForfaitise($idCategorie), $quantite, $idCategorie);
+        array_push($this->lesFraisForfaitises, $NouveauFrais);
+        
     }
 
     /**
@@ -117,7 +117,7 @@ final class FicheFrais {
      * @param string $action L'action à réaliser éventuellement sur le frais.
      */
     public function ajouterUnFraisHorsForfait($numFrais, $libelle, $date, $montant, $action = NULL) {
-
+        
     }
 
     /**
@@ -140,7 +140,7 @@ final class FicheFrais {
      */
     public function getLesQuantitesDeFraisForfaitises() {
         $quantites = [];
-        foreach($this->lesFraisForfaitises as &$unFrais) {
+        foreach ($this->lesFraisForfaitises as &$unFrais) {
             array_push($quantites, $unFrais->getQuantite());
         }
         return $quantites;
@@ -168,7 +168,7 @@ final class FicheFrais {
      * @return array Le tableau demandé.
      */
     public function getLesInfosFraisHorsForfait() {
-
+        
     }
 
     /**
@@ -201,7 +201,7 @@ final class FicheFrais {
      * @return booléen Le résultat du contrôle.
      */
     public function controlerQtesFraisForfaitises() {
-
+        
     }
 
     /**
@@ -212,7 +212,7 @@ final class FicheFrais {
      *
      */
     public function mettreAJourLesFraisForfaitises() {
-
+        
     }
 
 }
