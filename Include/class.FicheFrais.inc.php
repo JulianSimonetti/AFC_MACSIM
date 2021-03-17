@@ -189,7 +189,7 @@ final class FicheFrais {
      *
      */
     private function getNumLigneFraisForfaitise($idCategorieFraisForfaitise) {
-
+        return self::$tabNumLigneFraisForfaitise[$idCategorieFraisForfaitise];
     }
 
     /**
