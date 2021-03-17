@@ -103,7 +103,6 @@ final class FicheFrais {
     public function ajouterUnFraisForfaitise($idCategorie, $quantite) {
         $NouveauFrais = new FraisForfaitise($_SESSION['ff_idVisiteur'], $_SESSION['ff_mois'], $this->getNumLigneFraisForfaitise($idCategorie), $quantite, $idCategorie);
         array_push($this->lesFraisForfaitises, $NouveauFrais);
-        
     }
 
     /**
@@ -204,7 +203,7 @@ final class FicheFrais {
      * @return booléen Le résultat du contrôle.
      */
     public function controlerQtesFraisForfaitises() {
-        
+        return lesQteFraisValides(getLesQuantitesDeFraisForfaitises());
     }
 
     /**
