@@ -383,7 +383,28 @@ class PdoGsb {
      * @return boolean Le résultat de la mise à jour.
      */
     public function setLesQuantitesFraisForfaitises($unIdVisiteur, $unMois, $lesFraisForfaitises) {
-        
+        $req = "EXEC SP_LIGNE_FF_MAJ :idVisiteur, :mois, :cat, :qte";
+        $sttmt = self::$monPdo->prepare($req);
+        $sttmt->bindParam(':idVisiteur', $unIdVisiteur);
+        $sttmt->bindParam(':mois', $unMois);
+
+        $tabCat = ['1' => 'ETP',
+            '2' => 'KM',
+            '3' => 'NUI',
+            '4' => 'REP'];
+
+        try {
+            self::$monPdo->beginTransaction();
+            for ($i = 1; $i <= 4; $i++) {
+                $sttmt->bindValue(':cat', $tabCat['' . $i]);
+                $sttmt->bindValue(':qte', $lesFraisForfaitises['' . $i]);
+                $sttmt->execute();
+            }
+            self::$monPdo->commit();
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+            self::$monPdo->rollBack();
+        }
     }
 
     /**
