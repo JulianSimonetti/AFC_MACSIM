@@ -141,7 +141,7 @@ final class FicheFrais {
     public function getLesQuantitesDeFraisForfaitises() {
         $quantites = [];
         foreach($this->lesFraisForfaitises as &$unFrais) {
-            array_push($quantites, $unFrais['LFF_QTE']);
+            array_push($quantites, $unFrais->getQuantite());
         }
         return $quantites;
     }
