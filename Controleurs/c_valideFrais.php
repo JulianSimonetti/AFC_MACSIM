@@ -24,10 +24,10 @@ switch ($action) {
             $FF->initAvecInfosBDD();
             $lignes = $FF->getLesFraisForfaitises();
 
-            $etp = $lignes[1]->getQuantite();
-            $km = $lignes[2]->getQuantite();
-            $nui = $lignes[3]->getQuantite();
-            $rep = $lignes[4]->getQuantite();
+            $etp = $lignes['1']->getQuantite();
+            $km = $lignes['2']->getQuantite();
+            $nui = $lignes['3']->getQuantite();
+            $rep = $lignes['4']->getQuantite();
 
             $etat = $FF->getLibelleEtat();
             $nbJustificatifs = $FF->getNbJustificatifs();
@@ -48,6 +48,18 @@ switch ($action) {
             $FF->ajouterUnFraisForfaitise('KM', (int)$_POST['txtKm']);
             $FF->ajouterUnFraisForfaitise('NUI', (int)$_POST['txtNuitee']);
             $FF->ajouterUnFraisForfaitise('REP', (int)$_POST['txtRepas']);
+            
+            $etat = $FF->getLibelleEtat();
+            $nbJustificatifs = $FF->getNbJustificatifs();
+            $lesQuantites = $FF->getLesQuantitesDeFraisForfaitises();
+            
+            $lignes = $FF->getLesFraisForfaitises();
+
+            $etp = $lignes['1']->getQuantite();
+            $km = $lignes['2']->getQuantite();
+            $nui = $lignes['3']->getQuantite();
+            $rep = $lignes['4']->getQuantite();
+            
             include("vues/v_sommaire.php");
             include("vues/v_valideFraisCorpsFiche.php");
             break;
