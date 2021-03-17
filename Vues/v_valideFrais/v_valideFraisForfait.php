@@ -1,7 +1,9 @@
 
 <h2>Frais au forfait</h2>
-<form name="frmFraisForfait" id="frmFraisForfait" method="post" action="enregModifFF.php"
+<form name="frmFraisForfait" id="frmFraisForfait" method="post" action="index.php"
       onsubmit="return confirm('Voulez-vous réellement enregistrer les modifications apportées aux frais forfaitisés ?');">
+    <input type="hidden" name="uc" value="validerFicheFrais">
+    <input type="hidden" name="action" value="enregModifFF">
     <table>
         <tr>
             <th>Forfait<br />étape</th>
