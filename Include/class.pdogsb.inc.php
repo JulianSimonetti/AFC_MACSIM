@@ -423,7 +423,30 @@ class PdoGsb {
      * @return bool Le résultat de la mise à jour (TRUE : ok ; FALSE : pas ok).
      */
     public function setLesFraisHorsForfait($unIdVisiteur, $unMois, $lesFraisHorsForfait, $nbJustificatifsPEC) {
-        
+        $req = "EXEC SP_LIGNE_FHF_SUPPRIME :idVisiteur, :mois, :fraisNum";
+        $sttmtSupp = self::$monPdo->prepare($req);
+        $sttmtSupp->bindParam(':idVisiteur', $unIdVisiteur);
+        $sttmtSupp->bindParam(':mois', $unMois);
+
+        try {
+            self::$monPdo->beginTransaction();
+            foreach ($lesFraisHorsForfait as &$unFrais) {
+                switch ($unFrais->getAction()) {
+                    case 'S':// Suppression
+                        $sttmtSupp->bindValue(':fraisNum', $unFrais->getNumFrais());
+                        $sttmtSupp->execute();
+                        break;
+                    case 'R':
+                        break;
+                    default:
+                        break;
+                }
+            }
+            self::$monPdo->commit();
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+            self::$monPdo->rollBack();
+        }
     }
 
     /**

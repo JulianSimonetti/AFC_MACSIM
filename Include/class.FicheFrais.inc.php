@@ -97,7 +97,7 @@ final class FicheFrais {
         return $this->nbJustificatifs;
     }
 
-    public function SetNbJustificatifs($unNbJustificatif) {
+    public function setNbJustificatifs($unNbJustificatif) {
         $this->nbJustificatifs = $unNbJustificatif;
     }
     
