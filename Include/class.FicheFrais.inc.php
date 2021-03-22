@@ -73,7 +73,7 @@ final class FicheFrais {
     public function initLesFraisForfaitises() {
         $lesLignes = self::$pdo->getLignesFF($this->idVisiteur, $this->moisFiche);
         foreach ($lesLignes as &$uneLigne) {
-            $this->lesFraisForfaitises[''.self::$tabNumLigneFraisForfaitise[trim($uneLigne['CFF_ID'])]] = new FraisForfaitise($this->idVisiteur, $this->moisFiche, self::$tabNumLigneFraisForfaitise[trim($uneLigne['CFF_ID'])], $uneLigne['LFF_QTE'], $uneLigne['CFF_ID']);
+            $this->lesFraisForfaitises['' . self::$tabNumLigneFraisForfaitise[trim($uneLigne['CFF_ID'])]] = new FraisForfaitise($this->idVisiteur, $this->moisFiche, self::$tabNumLigneFraisForfaitise[trim($uneLigne['CFF_ID'])], $uneLigne['LFF_QTE'], $uneLigne['CFF_ID']);
         }
     }
 
@@ -102,7 +102,7 @@ final class FicheFrais {
      */
     public function ajouterUnFraisForfaitise($idCategorie, $quantite) {
         $NouveauFrais = new FraisForfaitise($_SESSION['ff_idVisiteur'], $_SESSION['ff_mois'], $this->getNumLigneFraisForfaitise($idCategorie), $quantite, $idCategorie);
-        $this->lesFraisForfaitises[''.self::$tabNumLigneFraisForfaitise[$idCategorie]] = $NouveauFrais;
+        $this->lesFraisForfaitises['' . self::$tabNumLigneFraisForfaitise[$idCategorie]] = $NouveauFrais;
     }
 
     /**
@@ -213,8 +213,13 @@ final class FicheFrais {
      * @return bool Le résultat de la mise à jour.
      *
      */
-    public function mettreAJourLesFraisForfaitises() {
-        
+    public function mettreAJourLesFraisForfaitises($unIdVisiteur, $unMois) {
+        try {
+            self::$pdo->setLesQuantitesFraisForfaitises($unIdVisiteur, $unMois, $this->lesFraisForfaitises);
+        } catch (Exception $ex) {
+            return $ex->getMessage();
+        }
+        return true;
     }
 
 }

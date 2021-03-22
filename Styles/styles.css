@@ -8,6 +8,17 @@ body{
     font-family:"Trebuchet MS",Verdana,Geneva,Arial,Helvetica,sans-serif;
     font-size:0.8em;
 }
+
+#messageSucces {
+    border-color: #66ff66;
+    background-color: #ccffcc;
+}
+
+#messageErreur {
+    border-color: #ff0000;
+    background-color: #ffb0b0;
+}
+
 #page {
     background-color:white;
     width : 65%;

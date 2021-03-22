@@ -72,7 +72,6 @@ final class FraisForfaitise extends Frais {
     public function getCategorie() {
         return $this->laCategorieFraisForfaitises;
     }
-
 }
 
 final class FraisHorsForfait extends Frais {

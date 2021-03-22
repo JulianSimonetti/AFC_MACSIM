@@ -49,6 +49,8 @@ switch ($action) {
             $FF->ajouterUnFraisForfaitise('NUI', (int)$_POST['txtNuitee']);
             $FF->ajouterUnFraisForfaitise('REP', (int)$_POST['txtRepas']);
             
+            $resMAJ = $FF->mettreAJourLesFraisForfaitises($_SESSION['ff_idVisiteur'], $_SESSION['ff_mois']);
+            
             $etat = $FF->getLibelleEtat();
             $nbJustificatifs = $FF->getNbJustificatifs();
             $lesQuantites = $FF->getLesQuantitesDeFraisForfaitises();

@@ -397,7 +397,7 @@ class PdoGsb {
             self::$monPdo->beginTransaction();
             for ($i = 1; $i <= 4; $i++) {
                 $sttmt->bindValue(':cat', $tabCat['' . $i]);
-                $sttmt->bindValue(':qte', $lesFraisForfaitises['' . $i]);
+                $sttmt->bindValue(':qte', $lesFraisForfaitises['' . $i]->getQuantite());
                 $sttmt->execute();
             }
             self::$monPdo->commit();
@@ -456,7 +456,7 @@ class PdoGsb {
         return $res->fetch(PDO::FETCH_ASSOC);
     }
 
-    function ListeVisiteursDepuisRecordset($valeuropt = NULL) {
+    public function ListeVisiteursDepuisRecordset($valeuropt = NULL) {
         $code = "<label for=\"lstVisiteur\">Visiteur : </label><select name=\"lstVisiteur\" id=\"lstVisiteur\" tabindex=\"10\">\n";
         $recordset = $this->getListeVisiteurs();
         $recordset->setFetchMode(PDO::FETCH_NUM);
@@ -477,7 +477,6 @@ class PdoGsb {
                 $ligne = $recordset->fetch();
             }
         }
-
         $code .= '</select>';
         return $code;
     }

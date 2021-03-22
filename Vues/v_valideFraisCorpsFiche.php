@@ -1,5 +1,18 @@
 <body>  
     <div id="contenu">
+        <?php 
+        if (isset($resMAJ)) {
+            ?>
+        <table id="<?= ($resMAJ == true ? "messageSucces" : "messageErreur") ?>">
+            <tr>
+                <th>
+                    <?= ($resMAJ != true ? $resMAJ : "Modifications appliquées avec succès.") ?>
+                </th>
+            </tr>
+        </table>
+        <?php
+        }
+        ?>
         <h2>Validation d'une fiche de frais visiteur</h2>
         <br />
         <form name="frmChoixVisiteurMoisFiche" id="frmChoixVisiteurMoisFiche" method="post" action="index.php">
