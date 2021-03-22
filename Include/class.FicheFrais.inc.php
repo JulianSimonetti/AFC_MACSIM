@@ -239,4 +239,8 @@ final class FicheFrais {
         return true;
     }
 
+    Public function controlerNbJustificatifs() {
+        Return s_int($this->nbJustificatifs);
+    }
+
 }
