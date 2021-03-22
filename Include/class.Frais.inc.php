@@ -51,11 +51,10 @@ abstract class Frais {
     }
 
 //    abstract public function getMontant();
-
 }
 
 final class FraisForfaitise extends Frais {
-    
+
     protected $laCategorieFraisForfaitises;
     protected $quantite;
 
@@ -64,45 +63,52 @@ final class FraisForfaitise extends Frais {
         $this->laCategorieFraisForfaitises = $uneCategorie;
         $this->quantite = $quantite;
     }
-    
+
     public function getQuantite() {
         return $this->quantite;
     }
-    
+
     public function getCategorie() {
         return $this->laCategorieFraisForfaitises;
     }
+
 }
 
 final class FraisHorsForfait extends Frais {
-    
+
     protected $numFrais;
     protected $libelle;
     protected $date;
     protected $montant;
-    
-    public function __construct($unIdVisiteur, $unMoisFicheFrais, $unNumFrais, $unLibelle, $uneDate, $unMontant) {
+    protected $action;
+
+    public function __construct($unIdVisiteur, $unMoisFicheFrais, $unNumFrais, $unLibelle, $uneDate, $unMontant, $uneAction = 'O') {
         parent::__construct($unIdVisiteur, $unMoisFicheFrais, $unNumFrais);
         $this->numFrais = $unNumFrais;
         $this->libelle = $unLibelle;
         $this->date = $uneDate;
         $this->montant = $unMontant;
+        $this->action = $uneAction;
     }
-    
+
     public function getNumFrais() {
         return $this->numFrais;
     }
-    
+
     public function getLibelle() {
         return $this->libelle;
     }
-    
+
     public function getDate() {
         return $this->date;
     }
-    
+
     public function getMontant() {
         return $this->montant;
     }
-}
 
+    public function getAction() {
+        return $this->action;
+    }
+
+}
