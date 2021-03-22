@@ -53,6 +53,11 @@ final class FicheFrais {
         $this->initInfosFicheSansLesFrais();
         $this->initLesFraisHorsForfait();
     }
+    
+    public function initAvecInfosBDDSansFHF() {
+        $this->initInfosFicheSansLesFrais();
+        $this->initLesFraisForfaitises();
+    }
 
     public function initInfosFicheSansLesFrais() {
         $resFiche = self::$pdo->getInfosFiche($this->idVisiteur, $this->moisFiche);
