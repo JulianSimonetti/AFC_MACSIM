@@ -79,7 +79,9 @@ final class FicheFrais {
 
     public function initLesFraisHorsForfait() {
         $lesLignes = self::$pdo->getLignesFHF($this->idVisiteur, $this->moisFiche);
-        $this->lesFraisHorsForfait = $lesLignes;
+        foreach ($lesLignes as &$uneLigne) {
+            $this->lesFraisHorsForfait['' . $uneLigne['FRAIS_NUM']] = new FraisHorsForfait($this->idVisiteur, $this->moisFiche, $uneLigne['FRAIS_NUM'], $uneLigne['LFHF_LIBELLE'], $uneLigne['LFHF_DATE'], $uneLigne['LFHF_MONTANT']);
+        }
     }
 
     public function getLibelleEtat() {
@@ -160,7 +162,7 @@ final class FicheFrais {
 
     /**
      *
-     * Retourne un tableau associatif d'informations sur les frais forfaitisés
+     * Retourne un tableau associatif d'informations sur les frais hors forfait
      * de la fiche de frais :
      * - le numéro du frais (numFrais),
      * - son libellé (libelle),
@@ -170,7 +172,22 @@ final class FicheFrais {
      * @return array Le tableau demandé.
      */
     public function getLesInfosFraisHorsForfait() {
-        
+        $lignes = array();
+        if (count($this->lesFraisHorsForfait) > 0) {
+            foreach ($this->lesFraisHorsForfait as &$unFrais) {
+                $uneLigne = array();
+                $uneLigne['NUM'] = $unFrais->getNumFrais();
+                $uneLigne['LIB'] = $unFrais->getLibelle();
+                $uneLigne['DATE'] = $unFrais->getDate();
+                $uneLigne['MONTANT'] = $unFrais->getMontant();
+
+                $lignes[$unFrais->getNumFrais()] = $uneLigne;
+            }
+            ksort($lignes);
+            return $lignes;
+        } else {
+            return false;
+        }
     }
 
     /**

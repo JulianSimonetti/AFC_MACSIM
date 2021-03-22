@@ -23,6 +23,9 @@ switch ($action) {
             $FF = new FicheFrais($_SESSION['ff_idVisiteur'], $_SESSION['ff_mois']);
             $FF->initAvecInfosBDD();
             $lignes = $FF->getLesFraisForfaitises();
+            
+            $lesFHF = $FF->getLesInfosFraisHorsForfait();
+            
 
             $etp = $lignes['1']->getQuantite();
             $km = $lignes['2']->getQuantite();
