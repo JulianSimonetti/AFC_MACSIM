@@ -26,6 +26,7 @@
         <?php
         include("vues/v_valideFrais/v_valideFraisEtatFicheFrais.php");
         include("vues/v_valideFrais/v_valideFraisForfait.php");
+        include("vues/v_valideFrais/v_valideFraisHorsForfait.php");
         include("vues/v_valideFrais/v_valideFraisValider.php");
         ?>
     </div>

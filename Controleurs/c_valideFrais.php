@@ -39,9 +39,7 @@ switch ($action) {
 
             include("vues/v_sommaire.php");
             include("vues/v_valideFraisCorpsFiche.php");
-
             unset($FF);
-
             break;
         }
     case'enregModifFF': {
