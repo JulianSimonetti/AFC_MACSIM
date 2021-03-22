@@ -97,6 +97,10 @@ final class FicheFrais {
         return $this->nbJustificatifs;
     }
 
+    public function SetNbJustificatifs($unNbJustificatif) {
+        $this->nbJustificatifs = $unNbJustificatif;
+    }
+    
     /**
      *
      * Ajoute à la fiche de frais un frais forfaitisé (une ligne) dont
@@ -244,12 +248,9 @@ final class FicheFrais {
         return true;
     }
 
-    Public function SetNbJustificatifs($unNbJustificatif) {
-        $this->nbJustificatifs = $unNbJustificatif;
-    }
 
-    Public function controlerNbJustificatifs() {
-        Return s_int($this->nbJustificatifs);
+    public function controlerNbJustificatifs() {
+        return s_int($this->nbJustificatifs);
     }
 
 }
