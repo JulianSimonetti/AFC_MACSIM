@@ -80,11 +80,11 @@ class PdoGsb {
     public function getLignesFHF($idVisiteur, $moisFiche) {
         $req = "select * "
                 . "from LIGNE_FRAIS_HORS_FORFAIT "
-                . "where VIS_ID = '$idVisiteur' and FICHE_MOIS = '$moisFiche'";
+                . "where VIS_ID = '$idVisiteur' and FICHE_MOIS = '$moisFiche' "
+                . "order by FRAIS_NUM";
         $rs = PdoGsb::$monPdo->query($req);
-        if ($rs->fetchColumn() > 0) {
-            $lesLignes = $rs->fetchAll(PDO::FETCH_ASSOC);
-        } else {
+        $lesLignes = $rs->fetchAll(PDO::FETCH_ASSOC);
+        if (!$lesLignes) {
             $lesLignes = [];
         }
         return $lesLignes;
