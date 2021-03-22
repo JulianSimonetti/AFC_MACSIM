@@ -167,8 +167,8 @@ final class FicheFrais {
      * - le numéro du frais (numFrais),
      * - son libellé (libelle),
      * - sa date (date),
-     * - son montant (montant).
-     *
+     * - son montant (montant),
+     * - Son action (action).
      * @return array Le tableau demandé.
      */
     public function getLesInfosFraisHorsForfait() {
@@ -180,6 +180,7 @@ final class FicheFrais {
                 $uneLigne['LIB'] = $unFrais->getLibelle();
                 $uneLigne['DATE'] = $unFrais->getDate();
                 $uneLigne['MONTANT'] = $unFrais->getMontant();
+                $uneLigne['ACTION'] = $unFrais->getAction();
 
                 $lignes[$unFrais->getNumFrais()] = $uneLigne;
             }
