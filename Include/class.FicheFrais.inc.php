@@ -53,7 +53,7 @@ final class FicheFrais {
         $this->initInfosFicheSansLesFrais();
         $this->initLesFraisHorsForfait();
     }
-    
+
     public function initAvecInfosBDDSansFHF() {
         $this->initInfosFicheSansLesFrais();
         $this->initLesFraisForfaitises();
@@ -242,6 +242,10 @@ final class FicheFrais {
             return $ex->getMessage();
         }
         return true;
+    }
+
+    Public function SetNbJustificatifs($unNbJustificatif) {
+        $this->nbJustificatifs = $unNbJustificatif;
     }
 
     Public function controlerNbJustificatifs() {
