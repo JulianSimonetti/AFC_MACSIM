@@ -114,14 +114,16 @@ final class FicheFrais {
      * Le numéro de la ligne est automatiquement calculé à partir de l'id de
      * sa catégorie.
      *
+     * @param string $idCategorie L'ide de la catégorie du frais forfaitisé.
      * @param int $numFrais Le numéro de la ligne de frais hors forfait.
      * @param string $libelle Le libellé du frais.
      * @param string $date La date du frais, sous la forme AAAA-MM-JJ.
      * @param float $montant Le montant du frais.
      * @param string $action L'action à réaliser éventuellement sur le frais.
      */
-    public function ajouterUnFraisHorsForfait($numFrais, $libelle, $date, $montant, $action = NULL) {
-        
+    public function ajouterUnFraisHorsForfait($idCategorie, $numFrais, $libelle, $date, $montant, $action = NULL) {
+        $NouveauFrais = new FraisHorsForfait($_SESSION['ff_idVisiteur'], $_SESSION['ff_mois'], $numFrais, $libelle, $date, $montant, $action);
+        $this->lesFraisHorsForfait['' . self::$lesFraisHorsForfait[$idCategorie]] = $NouveauFrais;
     }
 
     /**
