@@ -20,10 +20,10 @@ if ($lesFHF) {
         </tr>
         <?php foreach ($lesFHF as &$unFHF) { ?>
             <tr>
-                <td><textarea form="frmFraisHorsForfait<?= $unFHF['NUM'] ?>" name="txtLibelle<?= $unFHF['NUM'] ?>" id="txtLibelle<?= $unFHF['NUM'] ?>"><?= $unFHF['LIB'] ?></textarea></td>
-                <td><input form="frmFraisHorsForfait<?= $unFHF['NUM'] ?>" type="date" name="txtDate<?= $unFHF['NUM'] ?>" id="txtDate<?= $unFHF['NUM'] ?>" value="<?= $unFHF['DATE'] ?>" /></td>
-                <td><input form="frmFraisHorsForfait<?= $unFHF['NUM'] ?>" size="7" type="text" name="txtMontant<?= $unFHF['NUM'] ?>" id="txtMontant<?= $unFHF['NUM'] ?>" value="<?= $unFHF['MONTANT'] ?>"/></td>
-                <td><select form="frmFraisHorsForfait<?= $unFHF['NUM'] ?>" name="txtMontant<?= $unFHF['NUM'] ?>" id="txtMontant<?= $unFHF['NUM'] ?>">
+                <td><textarea form="frmFraisHorsForfait<?= $unFHF['NUM'] ?>" name="txtLibelle" id="txtLibelle<?= $unFHF['NUM'] ?>"><?= $unFHF['LIB'] ?></textarea></td>
+                <td><input form="frmFraisHorsForfait<?= $unFHF['NUM'] ?>" type="date" name="txtDate" id="txtDate<?= $unFHF['NUM'] ?>" value="<?= $unFHF['DATE'] ?>" /></td>
+                <td><input form="frmFraisHorsForfait<?= $unFHF['NUM'] ?>" size="7" type="text" name="txtMontant" id="txtMontant<?= $unFHF['NUM'] ?>" value="<?= $unFHF['MONTANT'] ?>"/></td>
+                <td><select form="frmFraisHorsForfait<?= $unFHF['NUM'] ?>" name="fraisAction" id="fraisAction<?= $unFHF['NUM'] ?>">
                         <option value="O" <?= ($unFHF['ACTION'] == "O" ? "selected" : "") ?>>O</option>
                         <option value="R" <?= ($unFHF['ACTION'] == "R" ? "selected" : "") ?>>R</option>
                         <option value="S" <?= ($unFHF['ACTION'] == "S" ? "selected" : "") ?>>S</option>
