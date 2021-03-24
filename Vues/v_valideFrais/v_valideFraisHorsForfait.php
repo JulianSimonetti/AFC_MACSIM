@@ -1,4 +1,4 @@
-<h2>Frais au forfait</h2>
+<h2>Frais hors forfait</h2>
 <?php
 if ($lesFHF) {
     foreach ($lesFHF as &$unFHF) {
@@ -20,7 +20,7 @@ if ($lesFHF) {
         </tr>
         <?php foreach ($lesFHF as &$unFHF) { ?>
             <tr>
-                <td><textarea class="inFHF" form="frmFraisHorsForfait<?= $unFHF['NUM'] ?>" name="txtLibelle" id="txtLibelle<?= $unFHF['NUM'] ?>"><?= $unFHF['LIB'] ?></textarea></td>
+                <td><textarea class="inFHF" form="frmFraisHorsForfait<?= $unFHF['NUM'] ?>" name="txtLibelle" id="txtLibelle<?= $unFHF['NUM'] ?>" readonly><?= $unFHF['LIB'] ?></textarea></td>
                 <td><input class="inFHF" form="frmFraisHorsForfait<?= $unFHF['NUM'] ?>" type="date" name="txtDate" id="txtDate<?= $unFHF['NUM'] ?>" value="<?= $unFHF['DATE'] ?>" /></td>
                 <td><input class="inFHF" form="frmFraisHorsForfait<?= $unFHF['NUM'] ?>" size="7" type="text" name="txtMontant" id="txtMontant<?= $unFHF['NUM'] ?>" value="<?= $unFHF['MONTANT'] ?>"/></td>
                 <td><select class="inFHF" form="frmFraisHorsForfait<?= $unFHF['NUM'] ?>" name="fraisAction" id="fraisAction<?= $unFHF['NUM'] ?>">

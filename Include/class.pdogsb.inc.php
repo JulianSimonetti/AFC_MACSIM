@@ -383,7 +383,7 @@ class PdoGsb {
      * @return boolean Le résultat de la mise à jour.
      */
     public function setLesQuantitesFraisForfaitises($unIdVisiteur, $unMois, $lesFraisForfaitises) {
-        $req = "EXEC SP_LIGNE_FF_MAJ :idVisiteur, :mois, :cat, :qte";
+        $req = "EXEC dbo.SP_LIGNE_FF_MAJ :idVisiteur, :mois, :cat, :qte";
         $sttmt = self::$monPdo->prepare($req);
         $sttmt->bindParam(':idVisiteur', $unIdVisiteur);
         $sttmt->bindParam(':mois', $unMois);
@@ -423,9 +423,9 @@ class PdoGsb {
      * @return bool Le résultat de la mise à jour (TRUE : ok ; FALSE : pas ok).
      */
     public function setLesFraisHorsForfait($unIdVisiteur, $unMois, $lesFraisHorsForfait, $nbJustificatifsPEC) {
-        $reqSupp = "EXEC SP_LIGNE_FHF_SUPPRIME :idVisiteur, :mois, :fraisNum";
-        $reqRepo = "EXEC SP_LIGNE_FHF_REPORTE :idVisiteur, :mois, :fraisNum";
-        $reqJust = "EXEC SP_FICHE_NB_JPEC_MAJ :idVisiteur, :mois, :nouvNB";
+        $reqSupp = "EXEC dbo.SP_LIGNE_FHF_SUPPRIME :idVisiteur, :mois, :fraisNum";
+        $reqRepo = "EXEC dbo.SP_LIGNE_FHF_REPORTE :idVisiteur, :mois, :fraisNum";
+        $reqJust = "EXEC dbo.SP_FICHE_NB_JPEC_MAJ :idVisiteur, :mois, :nouvNB";
         try {
             self::$monPdo->beginTransaction();
             foreach ($lesFraisHorsForfait as &$unFrais) {
@@ -471,7 +471,7 @@ class PdoGsb {
      * @return object Recordset des visiteurs
      */
     public function getListeVisiteurs() {
-        $req = 'EXEC InfosVisiteurs';
+        $req = 'EXEC dbo.InfosVisiteurs';
         $res = PdoGsb::$monPdo->query($req);
         return $res;
     }
@@ -487,7 +487,7 @@ class PdoGsb {
      * @return array Tableau associatif des infos de la fiche
      */
     public function getInfosFormFiche($idVisiteur, $mois) {
-        $req = 'EXEC GetInfosFicheFrais \'' . $idVisiteur . '\',\'' . $mois . '\'';
+        $req = 'EXEC dbo.GetInfosFicheFrais \'' . $idVisiteur . '\',\'' . $mois . '\'';
         $res = PdoGsb::$monPdo->query($req);
         return $res->fetch(PDO::FETCH_ASSOC);
     }

@@ -62,7 +62,7 @@ final class FicheFrais {
     public function initInfosFicheSansLesFrais() {
         $resFiche = self::$pdo->getInfosFiche($this->idVisiteur, $this->moisFiche);
         if ($resFiche) {
-            $this->nbJustificatifs = $resFiche['FICHE_NB_JUSTIFICATIFS'];
+            $this->nbJustificatifs = (int)$resFiche['FICHE_NB_JUSTIFICATIFS'];
             $this->montantValide = $resFiche['FICHE_MONTANT_VALIDE'];
             $this->dateDerniereModif = $resFiche['FICHE_DATE_DERNIERE_MODIF'];
             $this->idEtat = $resFiche['EFF_ID'];
