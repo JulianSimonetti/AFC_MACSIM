@@ -239,18 +239,25 @@ final class FicheFrais {
      * @return bool Le résultat de la mise à jour.
      *
      */
-    public function mettreAJourLesFraisForfaitises($unIdVisiteur, $unMois) {
+    public function mettreAJourLesFraisForfaitises() {
         try {
-            self::$pdo->setLesQuantitesFraisForfaitises($unIdVisiteur, $unMois, $this->lesFraisForfaitises);
+            self::$pdo->setLesQuantitesFraisForfaitises($this->idVisiteur, $this->moisFiche, $this->lesFraisForfaitises);
         } catch (Exception $ex) {
             return $ex->getMessage();
         }
         return true;
     }
-
-
-    public function controlerNbJustificatifs() {
-        return s_int($this->nbJustificatifs);
+    
+    public function mettreAJourLesFraisHorsForfait() {
+        try {
+            self::$pdo->setLesFraisHorsForfait($this->idVisiteur, $this->moisFiche, $this->lesFraisHorsForfait, $this->nbJustificatifs);
+        } catch (Exception $ex) {
+            return $ex->getMesssage();
+        }
+        return true;
     }
-
+    
+    public function controlerNbJustificatifs() {
+        return is_int($this->nbJustificatifs);
+    }
 }
