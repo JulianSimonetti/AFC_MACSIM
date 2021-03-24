@@ -50,7 +50,7 @@ abstract class Frais {
         return $this->numFrais;
     }
 
-//    abstract public function getMontant();
+    abstract public function getMontant();
 }
 
 final class FraisForfaitise extends Frais {
@@ -71,7 +71,11 @@ final class FraisForfaitise extends Frais {
     public function getCategorie() {
         return $this->laCategorieFraisForfaitises;
     }
-
+    
+    public function getMontant() {
+        $unPdo = PdoGsb::getPdoGsb();
+        return $this->getQuantite() * $unPdo->getInfosCategorieFrais($this->getCategorie())['CFF_MONTANT'];
+    }
 }
 
 final class FraisHorsForfait extends Frais {

@@ -1,4 +1,5 @@
-<body>  
+<body>
+    <script src="./JavaScript/controleForm.js"></script>
     <div id="contenu">
         <?php 
         if (isset($resMAJ)) {

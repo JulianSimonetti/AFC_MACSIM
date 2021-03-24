@@ -100,7 +100,7 @@ final class FicheFrais {
     public function setNbJustificatifs($unNbJustificatif) {
         $this->nbJustificatifs = $unNbJustificatif;
     }
-    
+
     /**
      *
      * Ajoute à la fiche de frais un frais forfaitisé (une ligne) dont
@@ -247,7 +247,7 @@ final class FicheFrais {
         }
         return true;
     }
-    
+
     public function mettreAJourLesFraisHorsForfait() {
         try {
             self::$pdo->setLesFraisHorsForfait($this->idVisiteur, $this->moisFiche, $this->lesFraisHorsForfait, $this->nbJustificatifs);
@@ -256,8 +256,32 @@ final class FicheFrais {
         }
         return true;
     }
-    
+
     public function controlerNbJustificatifs() {
         return is_int($this->nbJustificatifs);
     }
+
+    public function calculerLeMontantValide() {
+        $montant = 0;
+        $tousLesFrais = array_merge($this->lesFraisForfaitises, $this->lesFraisHorsForfait);
+        foreach ($tousLesFrais as &$unFrais) {
+            $montant += $unFrais->getMontant();
+        }
+        $this->montantValide = $montant;
+    }
+
+    public function valider() {
+        try {
+            $req = "EXEC SP_FICHE_VALIDE :idVisiteur, :mois";
+            $sttmtValide = self::$pdo->prepare($req);
+            $sttmtValide->bindParam(':idVisiteur', $this->idVisiteur);
+            $sttmtValide->bindParam(':mois', $this->moisFiche);
+
+            $sttmtValide->execute();
+        } catch (Exception $ex) {
+            return $ex->getMesssage();
+        }
+        return true;
+    }
+
 }

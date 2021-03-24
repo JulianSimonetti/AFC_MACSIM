@@ -7,7 +7,7 @@ if ($lesFHF) {
               onsubmit="return confirm('Voulez-vous réellement enregistrer les modifications apportées au frais hors forfait numéro <?= $unFHF['NUM'] ?> ?');">
         </form>
         <input form="frmFraisHorsForfait<?= $unFHF['NUM'] ?>" type="hidden" name="uc" value="validerFicheFrais" />
-        <input form="frmFraisHorsForfait<?= $unFHF['NUM'] ?>"type="hidden" name="action" value="enregModifFHF" />
+        <input form="frmFraisHorsForfait<?= $unFHF['NUM'] ?>" type="hidden" name="action" value="enregModifFHF" />
         <input form="frmFraisHorsForfait<?= $unFHF['NUM'] ?>" type="hidden" name="numFHF" value="<?= $unFHF['NUM'] ?>" />
     <?php } ?>
     <table>
@@ -20,10 +20,10 @@ if ($lesFHF) {
         </tr>
         <?php foreach ($lesFHF as &$unFHF) { ?>
             <tr>
-                <td><textarea form="frmFraisHorsForfait<?= $unFHF['NUM'] ?>" name="txtLibelle" id="txtLibelle<?= $unFHF['NUM'] ?>"><?= $unFHF['LIB'] ?></textarea></td>
-                <td><input form="frmFraisHorsForfait<?= $unFHF['NUM'] ?>" type="date" name="txtDate" id="txtDate<?= $unFHF['NUM'] ?>" value="<?= $unFHF['DATE'] ?>" /></td>
-                <td><input form="frmFraisHorsForfait<?= $unFHF['NUM'] ?>" size="7" type="text" name="txtMontant" id="txtMontant<?= $unFHF['NUM'] ?>" value="<?= $unFHF['MONTANT'] ?>"/></td>
-                <td><select form="frmFraisHorsForfait<?= $unFHF['NUM'] ?>" name="fraisAction" id="fraisAction<?= $unFHF['NUM'] ?>">
+                <td><textarea class="inFHF" form="frmFraisHorsForfait<?= $unFHF['NUM'] ?>" name="txtLibelle" id="txtLibelle<?= $unFHF['NUM'] ?>"><?= $unFHF['LIB'] ?></textarea></td>
+                <td><input class="inFHF" form="frmFraisHorsForfait<?= $unFHF['NUM'] ?>" type="date" name="txtDate" id="txtDate<?= $unFHF['NUM'] ?>" value="<?= $unFHF['DATE'] ?>" /></td>
+                <td><input class="inFHF" form="frmFraisHorsForfait<?= $unFHF['NUM'] ?>" size="7" type="text" name="txtMontant" id="txtMontant<?= $unFHF['NUM'] ?>" value="<?= $unFHF['MONTANT'] ?>"/></td>
+                <td><select class="inFHF" form="frmFraisHorsForfait<?= $unFHF['NUM'] ?>" name="fraisAction" id="fraisAction<?= $unFHF['NUM'] ?>">
                         <option value="O" <?= ($unFHF['ACTION'] == "O" ? "selected" : "") ?>>O</option>
                         <option value="R" <?= ($unFHF['ACTION'] == "R" ? "selected" : "") ?>>R</option>
                         <option value="S" <?= ($unFHF['ACTION'] == "S" ? "selected" : "") ?>>S</option>

@@ -2,8 +2,10 @@
 <br />
 <br />
 <div class="piedForm">
-    <form name="frmValiderFicheFrais" id="frmValiderFicheFrais" method="post" action="validerFicheFrais.php"
-          onsubmit="return confirm('Voulez-vous réellement valider la fiche de frais ?');">
+    <form name="frmValiderFicheFrais" id="frmValiderFicheFrais" method="post" action="validerFicheFrais.php">
+        <input type="hidden" name="uc" value="validerFicheFrais" />
+        <input type="hidden" name="action" value="validerFicheFrais" />
+        <input type="hidden" name="javascript" value="./JavaScript/controleForm.js" />
         <input type="submit" name="btnValiderFiche" id="btnValiderFiche" value="Valider la fiche de frais" tabindex="160" />
     </form>
 </div>
