@@ -516,6 +516,10 @@ class PdoGsb {
         $code .= '</select>';
         return $code;
     }
-
+    
+//    public function getNbFichesACloturer($mois) {
+//        $req = "SELECT F_"
+//        self::$monPdo->prepare($req);
+//    }
 }
 ?>

@@ -68,7 +68,7 @@ switch ($action) {
         break;
     case 'enregModifFHF':
         $FF = new FicheFrais($_SESSION['ff_idVisiteur'], $_SESSION['ff_mois']);
-        $FF->initInfosFicheSansFHF();
+        $FF->initAvecInfosBDDSansFHF();
 
         $FF->ajouterUnFraisHorsForfait((int) $_POST['numFHF'], $_POST['txtLibelle'], $_POST['txtDate'], (float) $_POST['txtMontant'], $_POST['fraisAction']);
 

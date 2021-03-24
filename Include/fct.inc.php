@@ -74,6 +74,10 @@ function getMois($date) {
     return $annee . $mois;
 }
 
+function getMoisFichesATraiter() {
+    return affichageMois();
+}
+
 /* gestion des erreurs */
 
 /**

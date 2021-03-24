@@ -12,8 +12,13 @@
         <li class="smenu">
             <a href="index.php?uc=validerFicheFrais&action=choixInitialVisiteur" title="Valider des fiches de frais">Valider des fiches de frais</a>
         </li>
+        <hr />
         <li class="smenu">
             <a href="index.php?uc=connexion&action=deconnexion" title="Se déconnecter">Déconnexion</a>
+        </li>
+        <hr />
+        <li class="smenu">
+            <a href="index.php?uc=connexion&action=deconnexion" title="Accéder aux options de clôture">Clôturer la saisie de fiches de frais</a>
         </li>
     </ul>
 </div>
