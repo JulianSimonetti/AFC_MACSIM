@@ -14,18 +14,20 @@ switch ($action) {
     case 'demanderConfirmationClotureFiches':
         $message = "Êtes-vous sûr.e de vouloir clôturer les fiches du mois de " . affichageMois() . " ?"
                 . "<br />Il y aura " . $pdo->getNbFichesACloturer(affichageMois()) . " fiches à clôturer.";
+        include("vues/v_sommaire.php");
+        include("vues/v_messageOuiNon.php");
 
         break;
 
     case 'traiterReponseClotureFiches':
         include("vues/v_sommaire.php");
 
-        $pdo->
+        $nbClotures = $pdo->cloturerFichesFrais($_POST['mois']);
 
-        $message = "Les fiches ont bien été clôturées.";
+        $message = "$nbClotures fiches ont bien été clôturées.";
         include("Vues/v_message.php");
         break;
 
-    default:
+    default: 
         break;
 }

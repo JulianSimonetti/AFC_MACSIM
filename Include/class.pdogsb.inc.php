@@ -518,11 +518,15 @@ class PdoGsb {
     }
     
     public function getNbFichesACloturer($mois) {
-        $req = "SELECT F_FICHE_A_CLOTURER_NB(:mois)";
-        $sttmt = self::$monPdo->prepare($req);
-        $sttmt->bindParam(':mois', $mois);
-        $sttmt->execute();
+        $req = "SELECT dbo.F_FICHE_A_CLOTURER_NB('$mois')";
+        $sttmt = self::$monPdo->query($req);
         return $sttmt->fetchColumn(0);
+    }
+    
+    public function cloturerFichesFrais($mois) {
+        $req = "EXEC dbo.CLOTURE_FICHE '$mois'";
+        $sttmt = self::$monPdo->query($req);
+        return $sttmt->rowCount();
     }
 }
 ?>

@@ -219,8 +219,8 @@ function affichageMois() {
         $lAnnee--;
         $leMois = 12;
     }
-//    return (new DateTime((string) $lAnnee . '-' . (string) $leMois))->format('Ym');
-    return (new DateTime('2010' . '-' . (string) $leMois))->format('Ym');
+    return (new DateTime((string) $lAnnee . '-' . (string) $leMois))->format('Ym');
+//    return (new DateTime('2010' . '-' . (string) $leMois))->format('Ym');
 }
 ?>
 
