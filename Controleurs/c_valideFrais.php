@@ -100,25 +100,25 @@ switch ($action) {
         break;
 
     case 'validerFicheFrais':
+        include("vues/v_sommaire.php");
         $FF = new FicheFrais($_SESSION['ff_idVisiteur'], $_SESSION['ff_mois']);
         $FF->initAvecInfosBDD();
         if (!isset($FF)) {
             ajouterErreur($_SESSION['ff_idVisiteur'] . " n'a pas rempli de fiche de frais pour le " . $_SESSION['ff_mois']);
             include("vues/v_erreurs");
-        }
-        else if ($FF->getCodeEtat() != "CL") {
+        } else if ($FF->getCodeEtat() != "CL") {
             switch ($FF->getCodeEtat()) {
                 case 'RB':
                     ajouterErreur("La fiche de frais de" . $_SESSION['ff_idVisiteur'] . " du " . $_SESSION['ff_mois'] . " a déjà été remboursée");
-                    include("vues/v_erreurs");
+                    include("vues/v_erreurs.php");
                     break;
                 case 'VA':
                     ajouterErreur("La fiche de frais de" . $_SESSION['ff_idVisiteur'] . " du " . $_SESSION['ff_mois'] . " a déjà été validée");
-                    include("vues/v_erreurs");
+                    include("vues/v_erreurs.php");
                     break;
                 default :
                     ajouterErreur("La fiche de frais de" . $_SESSION['ff_idVisiteur'] . " du " . $_SESSION['ff_mois'] . " n'est pas cloturée");
-                    include("vues/v_erreurs");
+                    include("vues/v_erreurs.php");
                     break;
             }
         } else {
@@ -139,6 +139,9 @@ switch ($action) {
             $etat = $FF->getLibelleEtat();
             $nbJustificatifs = $FF->getNbJustificatifs();
             $lesQuantites = $FF->getLesQuantitesDeFraisForfaitises();
+            
+            $message = "La fiche a été validée avec succès.";
+            include("vues/v_message.php");
         }
 
         break;

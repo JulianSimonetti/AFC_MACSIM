@@ -437,7 +437,7 @@ class PdoGsb {
                         $sttmtSupp->bindParam(':mois', $unMois);
                         $sttmtSupp->bindValue(':fraisNum', $unFrais->getNumFrais());
                         $sttmtSupp->execute();
-                        $result[0] = $sttmtSupp->rowCount();
+                        $result[0] ++;
                         break;
                     case 'R': // Report
                         $sttmtRepo = self::$monPdo->prepare($reqRepo);
@@ -445,25 +445,25 @@ class PdoGsb {
                         $sttmtRepo->bindParam(':mois', $unMois);
                         $sttmtRepo->bindValue(':fraisNum', $unFrais->getNumFrais());
                         $sttmtRepo->execute();
-                        $result[1] = $sttmtRepo->rowCount();
+                        $result[1] ++;
                         break;
                     default:
                         break;
                 }
             }
-            
+
             $sttmtJust = self::$monPdo->prepare($reqJust);
             $sttmtJust->bindParam(':idVisiteur', $unIdVisiteur);
             $sttmtJust->bindParam(':mois', $unMois);
             $sttmtJust->bindParam(':nouvNB', $nbJustificatifsPEC);
             $sttmtJust->execute();
-            
+
             self::$monPdo->commit();
         } catch (Exception $ex) {
             echo $ex->getMessage();
             self::$monPdo->rollBack();
         }
-        
+
         return $result;
     }
 
@@ -521,17 +521,26 @@ class PdoGsb {
         $code .= '</select>';
         return $code;
     }
-    
+
     public function getNbFichesACloturer($mois) {
         $req = "SELECT dbo.F_FICHE_A_CLOTURER_NB('$mois')";
         $sttmt = self::$monPdo->query($req);
         return $sttmt->fetchColumn(0);
     }
-    
+
     public function cloturerFichesFrais($mois) {
         $req = "EXEC dbo.CLOTURE_FICHE '$mois'";
         $sttmt = self::$monPdo->query($req);
         return $sttmt->rowCount();
     }
+
+    public function validerFiche($FF) {
+        $req = "EXEC SP_FICHE_VALIDE :idVisiteur, :mois";
+        $sttmtValide = self::$monPdo->prepare($req);
+        $sttmtValide->bindValue(':idVisiteur', $FF->getIdVisiteur());
+        $sttmtValide->bindValue(':mois', $FF->getMoisFiche());
+        $sttmtValide->execute();
+    }
+
 }
 ?>

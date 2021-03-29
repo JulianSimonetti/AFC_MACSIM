@@ -89,8 +89,16 @@ final class FicheFrais {
         }
     }
     
+    public function getIdVisiteur() {
+        return $this->idVisiteur;
+    }
+    
+    public function getMoisFiche() {
+        return $this->moisFiche;
+    }
+    
     public function getCodeEtat() {
-        return $this->idetat;
+        return $this->idEtat;
     }
 
     public function getLibelleEtat() {
@@ -276,12 +284,7 @@ final class FicheFrais {
 
     public function valider() {
         try {
-            $req = "EXEC SP_FICHE_VALIDE :idVisiteur, :mois";
-            $sttmtValide = self::$pdo->prepare($req);
-            $sttmtValide->bindParam(':idVisiteur', $this->idVisiteur);
-            $sttmtValide->bindParam(':mois', $this->moisFiche);
-
-            $sttmtValide->execute();
+            self::$pdo->validerFiche($this);
         } catch (Exception $ex) {
             return $ex->getMesssage();
         }
