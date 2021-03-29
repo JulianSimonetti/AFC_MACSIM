@@ -102,7 +102,11 @@ switch ($action) {
     case 'validerFicheFrais':
         $FF = new FicheFrais($_SESSION['ff_idVisiteur'], $_SESSION['ff_mois']);
         $FF->initAvecInfosBDD();
-        if ($FF->getCodeEtat() != "CL") {
+        if (!isset($FF)) {
+            ajouterErreur($_SESSION['ff_idVisiteur'] . " n'a pas rempli de fiche de frais pour le " . $_SESSION['ff_mois']);
+            include("vues/v_erreurs");
+        }
+        else if ($FF->getCodeEtat() != "CL") {
             switch ($FF->getCodeEtat()) {
                 case 'RB':
                     ajouterErreur("La fiche de frais de" . $_SESSION['ff_idVisiteur'] . " du " . $_SESSION['ff_mois'] . " a déjà été remboursée");
