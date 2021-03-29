@@ -105,19 +105,18 @@ switch ($action) {
         if (!isset($FF)) {
             ajouterErreur($_SESSION['ff_idVisiteur'] . " n'a pas rempli de fiche de frais pour le " . $_SESSION['ff_mois']);
             include("vues/v_erreurs");
-        }
-        else if ($FF->getCodeEtat() != "CL") {
+        } else if ($FF->getCodeEtat() != "CL") {
             switch ($FF->getCodeEtat()) {
                 case 'RB':
-                    ajouterErreur("La fiche de frais de" . $_SESSION['ff_idVisiteur'] . " du " . $_SESSION['ff_mois'] . " a déjà été remboursée");
+                    ajouterErreur("La fiche de frais de " . $_SESSION['ff_idVisiteur'] . " du " . $_SESSION['ff_mois'] . " a déjà été remboursée");
                     include("vues/v_erreurs");
                     break;
                 case 'VA':
-                    ajouterErreur("La fiche de frais de" . $_SESSION['ff_idVisiteur'] . " du " . $_SESSION['ff_mois'] . " a déjà été validée");
+                    ajouterErreur("La fiche de frais de " . $_SESSION['ff_idVisiteur'] . " du " . $_SESSION['ff_mois'] . " a déjà été validée");
                     include("vues/v_erreurs");
                     break;
                 default :
-                    ajouterErreur("La fiche de frais de" . $_SESSION['ff_idVisiteur'] . " du " . $_SESSION['ff_mois'] . " n'est pas cloturée");
+                    ajouterErreur("La fiche de frais de " . $_SESSION['ff_idVisiteur'] . " du " . $_SESSION['ff_mois'] . " n'est pas cloturée");
                     include("vues/v_erreurs");
                     break;
             }
