@@ -109,16 +109,16 @@ switch ($action) {
         } else if ($FF->getCodeEtat() != "CL") {
             switch ($FF->getCodeEtat()) {
                 case 'RB':
-                    ajouterErreur("La fiche de frais de" . $_SESSION['ff_idVisiteur'] . " du " . $_SESSION['ff_mois'] . " a déjà été remboursée");
-                    include("vues/v_erreurs.php");
+                    ajouterErreur("La fiche de frais de " . $_SESSION['ff_idVisiteur'] . " du " . $_SESSION['ff_mois'] . " a déjà été remboursée");
+                    include("vues/v_erreurs");
                     break;
                 case 'VA':
-                    ajouterErreur("La fiche de frais de" . $_SESSION['ff_idVisiteur'] . " du " . $_SESSION['ff_mois'] . " a déjà été validée");
-                    include("vues/v_erreurs.php");
+                    ajouterErreur("La fiche de frais de " . $_SESSION['ff_idVisiteur'] . " du " . $_SESSION['ff_mois'] . " a déjà été validée");
+                    include("vues/v_erreurs");
                     break;
                 default :
-                    ajouterErreur("La fiche de frais de" . $_SESSION['ff_idVisiteur'] . " du " . $_SESSION['ff_mois'] . " n'est pas cloturée");
-                    include("vues/v_erreurs.php");
+                    ajouterErreur("La fiche de frais de " . $_SESSION['ff_idVisiteur'] . " du " . $_SESSION['ff_mois'] . " n'est pas cloturée");
+                    include("vues/v_erreurs");
                     break;
             }
         } else {
