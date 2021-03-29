@@ -102,24 +102,41 @@ switch ($action) {
     case 'validerFicheFrais':
         $FF = new FicheFrais($_SESSION['ff_idVisiteur'], $_SESSION['ff_mois']);
         $FF->initAvecInfosBDD();
-        
-        
-        $FF->valider();
-        
+        if ($FF->getCodeEtat() != "CL") {
+            switch ($FF->getCodeEtat()) {
+                case 'RB':
+                    ajouterErreur("La fiche de frais de" . $_SESSION['ff_idVisiteur'] . " du " . $_SESSION['ff_mois'] . " a déjà été remboursée");
+                    include("vues/v_erreurs");
+                    break;
+                case 'VA':
+                    ajouterErreur("La fiche de frais de" . $_SESSION['ff_idVisiteur'] . " du " . $_SESSION['ff_mois'] . " a déjà été validée");
+                    include("vues/v_erreurs");
+                    break;
+                default :
+                    ajouterErreur("La fiche de frais de" . $_SESSION['ff_idVisiteur'] . " du " . $_SESSION['ff_mois'] . " n'est pas cloturée");
+                    include("vues/v_erreurs");
+                    break;
+            }
+        } else {
 
-        $lignes = $FF->getLesFraisForfaitises();
-
-        $lesFHF = $FF->getLesInfosFraisHorsForfait();
+            $FF->valider();
 
 
-        $etp = $lignes['1']->getQuantite();
-        $km = $lignes['2']->getQuantite();
-        $nui = $lignes['3']->getQuantite();
-        $rep = $lignes['4']->getQuantite();
+            $lignes = $FF->getLesFraisForfaitises();
 
-        $etat = $FF->getLibelleEtat();
-        $nbJustificatifs = $FF->getNbJustificatifs();
-        $lesQuantites = $FF->getLesQuantitesDeFraisForfaitises();
+            $lesFHF = $FF->getLesInfosFraisHorsForfait();
+
+
+            $etp = $lignes['1']->getQuantite();
+            $km = $lignes['2']->getQuantite();
+            $nui = $lignes['3']->getQuantite();
+            $rep = $lignes['4']->getQuantite();
+
+            $etat = $FF->getLibelleEtat();
+            $nbJustificatifs = $FF->getNbJustificatifs();
+            $lesQuantites = $FF->getLesQuantitesDeFraisForfaitises();
+        }
+
         break;
 
     default:
