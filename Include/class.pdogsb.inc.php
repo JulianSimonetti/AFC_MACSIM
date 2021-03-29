@@ -423,6 +423,7 @@ class PdoGsb {
      * @return bool Le résultat de la mise à jour (TRUE : ok ; FALSE : pas ok).
      */
     public function setLesFraisHorsForfait($unIdVisiteur, $unMois, $lesFraisHorsForfait, $nbJustificatifsPEC) {
+        $result = [0, 0];
         $reqSupp = "EXEC dbo.SP_LIGNE_FHF_SUPPRIME :idVisiteur, :mois, :fraisNum";
         $reqRepo = "EXEC dbo.SP_LIGNE_FHF_REPORTE :idVisiteur, :mois, :fraisNum";
         $reqJust = "EXEC dbo.SP_FICHE_NB_JPEC_MAJ :idVisiteur, :mois, :nouvNB";
@@ -436,6 +437,7 @@ class PdoGsb {
                         $sttmtSupp->bindParam(':mois', $unMois);
                         $sttmtSupp->bindValue(':fraisNum', $unFrais->getNumFrais());
                         $sttmtSupp->execute();
+                        $result[0] = $sttmtSupp->rowCount();
                         break;
                     case 'R': // Report
                         $sttmtRepo = self::$monPdo->prepare($reqRepo);
@@ -443,6 +445,7 @@ class PdoGsb {
                         $sttmtRepo->bindParam(':mois', $unMois);
                         $sttmtRepo->bindValue(':fraisNum', $unFrais->getNumFrais());
                         $sttmtRepo->execute();
+                        $result[1] = $sttmtRepo->rowCount();
                         break;
                     default:
                         break;
@@ -460,6 +463,8 @@ class PdoGsb {
             echo $ex->getMessage();
             self::$monPdo->rollBack();
         }
+        
+        return $result;
     }
 
     /**

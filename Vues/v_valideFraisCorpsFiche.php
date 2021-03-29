@@ -7,7 +7,7 @@
         <table id="<?= ($resMAJ == true ? "messageSucces" : "messageErreur") ?>">
             <tr>
                 <th>
-                    <?= ($resMAJ != true ? $resMAJ : "Modifications appliquées avec succès.") ?>
+                    <?= ($resMAJ != true ? $resMAJ : "Modifications appliquées avec succès.<br />".$_REQUEST['result'][0]." lignes supprimées et ".$_REQUEST['result'][1]." lignes reportées.") ?>
                 </th>
             </tr>
         </table>

@@ -254,7 +254,7 @@ final class FicheFrais {
 
     public function mettreAJourLesFraisHorsForfait() {
         try {
-            self::$pdo->setLesFraisHorsForfait($this->idVisiteur, $this->moisFiche, $this->lesFraisHorsForfait, $this->nbJustificatifs);
+            $_REQUEST['result'] = self::$pdo->setLesFraisHorsForfait($this->idVisiteur, $this->moisFiche, $this->lesFraisHorsForfait, $this->nbJustificatifs);
         } catch (Exception $ex) {
             return $ex->getMesssage();
         }
