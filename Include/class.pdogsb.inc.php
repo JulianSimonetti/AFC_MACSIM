@@ -517,9 +517,12 @@ class PdoGsb {
         return $code;
     }
     
-//    public function getNbFichesACloturer($mois) {
-//        $req = "SELECT F_"
-//        self::$monPdo->prepare($req);
-//    }
+    public function getNbFichesACloturer($mois) {
+        $req = "SELECT F_FICHE_A_CLOTURER_NB(:mois)";
+        $sttmt = self::$monPdo->prepare($req);
+        $sttmt->bindParam(':mois', $mois);
+        $sttmt->execute();
+        return $sttmt->fetchColumn(0);
+    }
 }
 ?>

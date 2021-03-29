@@ -24,6 +24,10 @@ switch ($uc) {
             include("Controleurs/c_valideFrais.php");
             break;
         }
+    case 'cloturerSaisieFichesFrais': {
+            include("Controleurs/c_clotureFichesSaisie.php");
+            break;
+        }
 }
 
 include("vues/v_pied.php");

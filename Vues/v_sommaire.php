@@ -14,11 +14,11 @@
         </li>
         <hr />
         <li class="smenu">
-            <a href="index.php?uc=connexion&action=deconnexion" title="Se déconnecter">Déconnexion</a>
+            <a href="index.php?uc=cloturerSaisieFichesFrais&action=demanderConfirmationClotureFiches" title="Accéder aux options de clôture">Clôturer la saisie de fiches de frais</a>
         </li>
         <hr />
         <li class="smenu">
-            <a href="index.php?uc=connexion&action=deconnexion" title="Accéder aux options de clôture">Clôturer la saisie de fiches de frais</a>
+            <a href="index.php?uc=connexion&action=deconnexion" title="Se déconnecter">Déconnexion</a>
         </li>
     </ul>
 </div>
