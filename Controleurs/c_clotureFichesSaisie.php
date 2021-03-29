@@ -12,11 +12,17 @@ $pdo = PdoGsb::getPdoGsb();
 
 switch ($action) {
     case 'demanderConfirmationClotureFiches':
-        $message = "Êtes-vous sûr.e de vouloir clôturer les fiches du mois de " . affichageMois() . " ?"
-                . "<br />Il y aura " . $pdo->getNbFichesACloturer(affichageMois()) . " fiches à clôturer.";
         include("vues/v_sommaire.php");
-        include("vues/v_messageOuiNon.php");
 
+        $nbFichesACloturer = $pdo->getNbFichesACloturer(affichageMois());
+        if ($nbFichesACloturer <= 0) {
+            ajouterErreur("Il n'y a pas de fiches à clôturer pour le mois " . affichageMois() . " !");
+            include("vues/v_erreurs.php");
+        } else {
+            $message = "Êtes-vous sûr.e de vouloir clôturer les fiches du mois de " . affichageMois() . " ?"
+                    . "<br />Il y aura " . $pdo->getNbFichesACloturer(affichageMois()) . " fiches à clôturer.";
+            include("vues/v_messageOuiNon.php");
+        }
         break;
 
     case 'traiterReponseClotureFiches':
@@ -28,6 +34,6 @@ switch ($action) {
         include("Vues/v_message.php");
         break;
 
-    default: 
+    default:
         break;
 }

@@ -88,6 +88,10 @@ final class FicheFrais {
             $this->lesFraisHorsForfait['' . $uneLigne['FRAIS_NUM']] = new FraisHorsForfait($this->idVisiteur, $this->moisFiche, $uneLigne['FRAIS_NUM'], $uneLigne['LFHF_LIBELLE'], $uneLigne['LFHF_DATE'], $uneLigne['LFHF_MONTANT']);
         }
     }
+    
+    public function getCodeEtat() {
+        return $this->idetat;
+    }
 
     public function getLibelleEtat() {
         return $this->libelleEtat;

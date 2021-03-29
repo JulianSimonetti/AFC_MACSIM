@@ -1,7 +1,11 @@
 <body>
     <div class="info">
-        Attention : <br />
-        <?= $message ?>
+        <ul>
+            <li>
+                Attention : <br />
+                <?= $message ?>
+            </li>
+        </ul>
     </div>
     <form name="frmChoix" id="frmChoix" action="index.php" method="post">
         <label for="mois">Indiquer le mois :</label>

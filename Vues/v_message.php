@@ -1,9 +1,9 @@
 <body>
     <div class="info">
-        Information : <br />
-        <?= $message ?>
+        <ul>
+            <li>
+                Information : <?= $message ?>
+            </li>
+        </ul>
     </div>
-    <form name="frmChoix" id="frmChoix" action="index.php" method="post">
-        <input type="submit" name="btnOK" value="Terminer" />
-    </form>
 </body>
