@@ -16,7 +16,7 @@ switch ($action) {
 
         break;
     case 'afficherFicheFraisSelectionnee':
-
+        include("vues/v_sommaire.php");
         $_SESSION['ff_idVisiteur'] = $_REQUEST['lstVisiteur'];
         $_SESSION['ff_mois'] = $_REQUEST['txtMoisFiche'];
 
@@ -24,7 +24,7 @@ switch ($action) {
         $FF->initAvecInfosBDD();
         if ($FF->getCodeEtat() == "00") {
             ajouterErreur($_SESSION['ff_idVisiteur'] . " n'a pas rempli de fiche de frais pour le " . $_SESSION['ff_mois']);
-            include("vues/v_erreurs");
+            include("vues/v_erreurs.php");
         } else {
             $lignes = $FF->getLesFraisForfaitises();
 
