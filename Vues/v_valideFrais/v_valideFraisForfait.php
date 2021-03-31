@@ -18,7 +18,7 @@
             <td><input class="inFF" type="text" size="3" name="txtNuitee" id="txtNuitee" tabindex="40" value="<?=$nui | 0?>" /></td>
             <td><input class="inFF" type="text" size="3" name="txtRepas" id="txtRepas" tabindex="45" value="<?=$rep | 0?>"/></td>
             <td>
-                <input type="submit" id="btnEnregistrerFF" name="btnEnregistrerFF" value="Enregistrer" tabindex="60" />&nbsp;
+                <input class="toHide" type="submit" id="btnEnregistrerFF" name="btnEnregistrerFF" value="Enregistrer" tabindex="60" />&nbsp;
                 <input type="reset" id="btnReinitialiserFF" name="btnReinitialiserFF" value="Réinitialiser" tabindex="70" />
             </td>
         </tr>

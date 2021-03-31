@@ -29,7 +29,7 @@ if ($lesFHF) {
                         <option value="S" <?= ($unFHF['ACTION'] == "S" ? "selected" : "") ?>>S</option>
                     </select></td>
                 <td>
-                    <input type="submit" id="btnEnregistrerFHF<?= $unFHF['NUM'] ?>" form="frmFraisHorsForfait<?= $unFHF['NUM'] ?>" name="btnEnregistrerFHF<?= $unFHF['NUM'] ?>" value="Enregistrer" />&nbsp;
+                    <input class="toHide" type="submit" id="btnEnregistrerFHF<?= $unFHF['NUM'] ?>" form="frmFraisHorsForfait<?= $unFHF['NUM'] ?>" name="btnEnregistrerFHF<?= $unFHF['NUM'] ?>" value="Enregistrer" />&nbsp;
                     <input type="reset" id="btnReinitialiserFHF<?= $unFHF['NUM'] ?>" form="frmFraisHorsForfait<?= $unFHF['NUM'] ?>" name="btnReinitialiserFHF<?= $unFHF['NUM'] ?>" value="Réinitialiser" />
                 </td>
             </tr>
