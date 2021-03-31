@@ -42,7 +42,6 @@ switch ($action) {
             $montantTotal = $FF->calculerLeMontantValide();
 
 
-            include("vues/v_sommaire.php");
             include("vues/v_valideFraisCorpsFiche.php");
             unset($FF);
         }
