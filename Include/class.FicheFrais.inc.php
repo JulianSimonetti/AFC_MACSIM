@@ -280,6 +280,7 @@ final class FicheFrais {
             $montant += $unFrais->getMontant();
         }
         $this->montantValide = $montant;
+        return $this->montantValide;
     }
 
     public function valider() {
