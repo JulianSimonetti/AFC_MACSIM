@@ -222,6 +222,11 @@ function affichageMois() {
     return (new DateTime((string) $lAnnee . '-' . (string) $leMois))->format('Ym');
 //    return (new DateTime('2010' . '-' . (string) $leMois))->format('Ym');
 }
+
+/**
+ * Retoune un booléen indiquant si la date du jour est dans la période de validation.
+ * @return boolean
+ */
 function estDansPeriodeValidation(){
     $laDate = new DateTime();
     $isok=false;
@@ -231,8 +236,15 @@ function estDansPeriodeValidation(){
     }
     return $isok;
 }
-/**
- * Retoune un booléen indiquant si la date du jour est dans la période de validation.
- */
+
+function estVerrouille() {
+    echo "
+            <script>
+                window.onload = function () {
+                    console.log(\"test\");
+                    $(\".toHide\").hide(0);
+                }
+            </script>";
+}
 ?>
 

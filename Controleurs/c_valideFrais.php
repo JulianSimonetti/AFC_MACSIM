@@ -41,11 +41,13 @@ switch ($action) {
             $lesQuantites = $FF->getLesQuantitesDeFraisForfaitises();
             $montantTotal = $FF->calculerLeMontantValide();
 
-
             include("vues/v_valideFraisCorpsFiche.php");
             unset($FF);
+            if (!estDansPeriodeValidation()) {
+                estVerrouille();
+            }
+            break;
         }
-        break;
     case 'enregModifFF':
         $FF = new FicheFrais($_SESSION['ff_idVisiteur'], $_SESSION['ff_mois']);
         $FF->initInfosFicheSansFF();
@@ -147,15 +149,7 @@ switch ($action) {
             $message = "La fiche a été validée avec succès.";
             include("vues/v_message.php");
             include("vues/v_valideFraisCorpsFiche.php");
-            ?>
-            <script>
-                window.onload = function () {
-                    console.log("test");
-                    $(".toHide").hide(0);
-                }
-            </script>
-            <?php
-
+            estVerrouille();
             unset($FF);
         }
 
