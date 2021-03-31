@@ -7,15 +7,7 @@
         <link href="./styles/styles.css" rel="stylesheet" type="text/css" />
         <link rel="shortcut icon" type="image/x-icon" href="./images/favicon.ico" />
         <script src="./Vendor/jquery-3.6.0.min.js"></script>
-        <?php
-//        if (isset($_REQUEST['javascript'])) {
-//            foreach ($_REQUEST['javascript'] as &$script) {
-//                ?>
-                <script src="//<?= $script ?>"></script>
-                //<?php
-//            }
-//        }
-        ?>
+
     </head>
     <body>
         <div id="page">
