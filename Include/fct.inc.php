@@ -222,5 +222,17 @@ function affichageMois() {
     return (new DateTime((string) $lAnnee . '-' . (string) $leMois))->format('Ym');
 //    return (new DateTime('2010' . '-' . (string) $leMois))->format('Ym');
 }
+function estDansPeriodeValidation(){
+    $laDate = new DateTime();
+    $isok=false;
+    $leJour = (int) ($laDate->format('d'));
+    if($leJour<=20 && $leJour>=10){
+        $isok=true;
+    }
+    return $isok;
+}
+/**
+ * Retoune un booléen indiquant si la date du jour est dans la période de validation.
+ */
 ?>
 
