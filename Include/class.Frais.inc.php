@@ -74,7 +74,7 @@ final class FraisForfaitise extends Frais {
     
     public function getMontant() {
         $unPdo = PdoGsb::getPdoGsb();
-        return $this->getQuantite() * $unPdo->getInfosCategorieFrais($this->getCategorie())['CFF_MONTANT'];
+        return $this->getQuantite() * $this->getCategorie()->getMontant();
     }
 }
 
