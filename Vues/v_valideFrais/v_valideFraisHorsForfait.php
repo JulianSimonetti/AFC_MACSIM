@@ -15,7 +15,10 @@ if ($lesFHF) {
             <th>Libelle</th>
             <th>Date</th>
             <th>Montant</th>
-            <th>Action</th>
+            <th>Ok</th>
+            <th>Reporter</th>
+            <th>Supprimer</th>
+
             <th></th>
         </tr>
         <?php foreach ($lesFHF as &$unFHF) { ?>
@@ -23,11 +26,9 @@ if ($lesFHF) {
                 <td><textarea class="inFHF" form="frmFraisHorsForfait<?= $unFHF['NUM'] ?>" name="txtLibelle" id="txtLibelle<?= $unFHF['NUM'] ?>" readonly><?= $unFHF['LIB'] ?></textarea></td>
                 <td><input class="inFHF" form="frmFraisHorsForfait<?= $unFHF['NUM'] ?>" type="date" name="txtDate" id="txtDate<?= $unFHF['NUM'] ?>" value="<?= $unFHF['DATE'] ?>" /></td>
                 <td><input class="inFHF" form="frmFraisHorsForfait<?= $unFHF['NUM'] ?>" size="7" type="text" name="txtMontant" id="txtMontant<?= $unFHF['NUM'] ?>" value="<?= $unFHF['MONTANT'] ?>"/></td>
-                <td><select class="inFHF" form="frmFraisHorsForfait<?= $unFHF['NUM'] ?>" name="fraisAction" id="fraisAction<?= $unFHF['NUM'] ?>">
-                        <option value="O" <?= ($unFHF['ACTION'] == "O" ? "selected" : "") ?>>O</option>
-                        <option value="R" <?= ($unFHF['ACTION'] == "R" ? "selected" : "") ?>>R</option>
-                        <option value="S" <?= ($unFHF['ACTION'] == "S" ? "selected" : "") ?>>S</option>
-                    </select></td>
+                <td><input class="inFHF" form="frmFraisHorsForfait<?= $unFHF['NUM'] ?>" type="radio" name="Choix<?= $unFHF['NUM'] ?>" value="O" checked/></td>
+                <td><input class="inFHF" form="frmFraisHorsForfait<?= $unFHF['NUM'] ?>" type="radio" name="Choix<?= $unFHF['NUM'] ?>" value="R" /></td>
+                <td><input class="inFHF" form="frmFraisHorsForfait<?= $unFHF['NUM'] ?>" type="radio" name="Choix<?= $unFHF['NUM'] ?>" value="S" /></td>
                 <td>
                     <input class="toHide" type="submit" id="btnEnregistrerFHF<?= $unFHF['NUM'] ?>" form="frmFraisHorsForfait<?= $unFHF['NUM'] ?>" name="btnEnregistrerFHF<?= $unFHF['NUM'] ?>" value="Enregistrer" />&nbsp;
                     <input type="reset" id="btnReinitialiserFHF<?= $unFHF['NUM'] ?>" form="frmFraisHorsForfait<?= $unFHF['NUM'] ?>" name="btnReinitialiserFHF<?= $unFHF['NUM'] ?>" value="Réinitialiser" />
@@ -35,7 +36,7 @@ if ($lesFHF) {
             </tr>
         <?php } ?>
     </table>
-    <?php } else {
+<?php } else {
     ?>
     <p>Pas de frais hors forfait pour cette fiche.</p>
 <?php } ?>
