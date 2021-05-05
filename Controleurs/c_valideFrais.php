@@ -46,8 +46,9 @@ switch ($action) {
             if (!estDansPeriodeValidation()) {
                 estVerrouille();
             }
-            break;
         }
+        break;
+
     case 'enregModifFF':
         $FF = new FicheFrais($_SESSION['ff_idVisiteur'], $_SESSION['ff_mois']);
         $FF->initInfosFicheSansFF();
