@@ -244,6 +244,7 @@ function estVerrouille() {
                     console.log(\"test\");
                     $(\".toHide\").hide(0);
                     $(\".inFHF\").prop(\"readonly\", true);
+                    $(\".inFF\").prop(\"readonly\", true);
                 }
             </script>";
 }

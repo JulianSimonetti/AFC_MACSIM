@@ -19,18 +19,18 @@ if ($lesFHF) {
             <th>Date</th>
             <th>Libelle</th>
             <th>Montant</th>
-            <th>Ok</th>
-            <th>Reporter</th>
-            <th>Supprimer</th>
+            <th class="toHide">Ok</th>
+            <th class="toHide">Reporter</th>
+            <th class="toHide">Supprimer</th>
         </tr>
         <?php foreach ($lesFHF as &$unFHF) { ?>
             <tr>
                 <td><input class="inFHF" form="frmLesFraisFHF" type="date" name="txtDate_N<?= $unFHF['NUM'] ?>" id="txtDate<?= $unFHF['NUM'] ?>" value="<?= $unFHF['DATE'] ?>" /></td>
                 <td><textarea class="inFHF" form="frmLesFraisFHF" name="txtLibelle_N<?= $unFHF['NUM'] ?>" id="txtLibelle<?= $unFHF['NUM'] ?>" readonly><?= $unFHF['LIB'] ?></textarea></td>
                 <td><input class="inFHF" form="frmLesFraisFHF" size="7" type="text" name="txtMontant_N<?= $unFHF['NUM'] ?>" id="txtMontant<?= $unFHF['NUM'] ?>" value="<?= $unFHF['MONTANT'] ?>"/></td>
-                <td><input class="toHide" form="frmLesFraisFHF" type="radio" name="Choix<?= $unFHF['NUM'] ?>" value="O" checked/></td>
-                <td><input class="toHide" form="frmLesFraisFHF" type="radio" name="Choix<?= $unFHF['NUM'] ?>" value="R" /></td>
-                <td><input class="toHide" form="frmLesFraisFHF" type="radio" name="Choix<?= $unFHF['NUM'] ?>" value="S" /></td>
+                <td class="toHide"><input class="toHide" form="frmLesFraisFHF" type="radio" name="Choix<?= $unFHF['NUM'] ?>" value="O" checked/></td>
+                <td class="toHide"><input class="toHide" form="frmLesFraisFHF" type="radio" name="Choix<?= $unFHF['NUM'] ?>" value="R" /></td>
+                <td class="toHide"><input class="toHide" form="frmLesFraisFHF" type="radio" name="Choix<?= $unFHF['NUM'] ?>" value="S" /></td>
             </tr>
         <?php } ?>
     </table>
