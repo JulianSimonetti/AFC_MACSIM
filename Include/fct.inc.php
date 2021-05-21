@@ -243,6 +243,7 @@ function estVerrouille() {
                 window.onload = function () {
                     console.log(\"test\");
                     $(\".toHide\").hide(0);
+                    $(\".inFHF\").prop(\"readonly\", true);
                 }
             </script>";
 }

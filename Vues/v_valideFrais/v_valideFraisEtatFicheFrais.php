@@ -13,12 +13,4 @@
                 </p>
             </td>
         </tr>
-        <tr>
-            <td>
-                <p>
-                    Nombre de justificatifs :<input type="text" id="txtNbJustificatifs" name="txtNbJustificatifs" value="<?= $nbJustificatifs ?>"/>
-                </p>
-            </td>
-            <td></td>
-        </tr>
     </table>

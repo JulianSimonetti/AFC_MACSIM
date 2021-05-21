@@ -78,7 +78,12 @@ switch ($action) {
         $FF = new FicheFrais($_SESSION['ff_idVisiteur'], $_SESSION['ff_mois']);
         $FF->initAvecInfosBDDSansFHF();
 
-        $FF->ajouterUnFraisHorsForfait((int) $_POST['numFHF'], $_POST['txtLibelle'], $_POST['txtDate'], (float) $_POST['txtMontant'], $_POST['fraisAction']);
+        $countFHF = $_POST['countFHF'];
+        for ($i = 5; i <= $countFHF + 4;  ++$i) {
+            $FF->ajouterUnFraisHorsForfait((int) $_POST['numFHF_N'.$i], $_POST['txtLibelle_N'.$i], $_POST['txtDate_N'.$i], (float) $_POST['txtMontant_N'.$i], $_POST['Choix' . $_POST['numFHF']]);
+        }
+
+//        $FF->ajouterUnFraisHorsForfait((int) $_POST['numFHF'], $_POST['txtLibelle'], $_POST['txtDate'], (float) $_POST['txtMontant'], $_POST['Choix' . $_POST['numFHF']]);
 
         if ($FF->controlerNbJustificatifs()) {
             $resMAJ = $FF->mettreAJourLesFraisHorsForfait();
