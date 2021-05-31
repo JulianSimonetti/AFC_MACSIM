@@ -79,7 +79,7 @@ switch ($action) {
         $FF->initAvecInfosBDDSansFHF();
 
         $countFHF = $_POST['countFHF'];
-        for ($i = 5; i <= $countFHF + 4;  ++$i) {
+        for ($i = 5; $i <= $countFHF + 4;  $i++) {
             $FF->ajouterUnFraisHorsForfait((int) $_POST['numFHF_N'.$i], $_POST['txtLibelle_N'.$i], $_POST['txtDate_N'.$i], (float) $_POST['txtMontant_N'.$i], $_POST['Choix' . $_POST['numFHF']]);
         }
 
